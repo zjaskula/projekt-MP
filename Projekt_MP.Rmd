@@ -1,0 +1,393 @@
+---
+title: "Predykcja zespołu metabolicznego"
+author: "Jaskuła Z., Kozakiewicz K., Miklaszewska N."
+date: "`r Sys.Date()`"
+output:
+  pdf_document:
+    toc: true
+  word_document:
+    toc: true
+fontsize: 12pt
+bibliography: references.bib
+csl: "nowa-audiofonologia.csl"
+lang: pl
+link-citations: true
+---
+
+\newpage
+
+# Wstęp
+
+Zespół metaboliczny jest istotnym wyzwaniem dla zdrowia publicznego i epidemiologii. Został po raz pierwszy opisany w 1981 roku, a jego definicja była wielokrotnie aktualizowana [@kalinowski2016]. Obecna definicja, zaproponowana w artykule *„Zespół metaboliczny — nowa definicja i postępowanie w praktyce”* [@dobrowolski], opracowanym przez polskie towarzystwa medyczne, brzmi następująco:
+
+*definicja*:
+
+:   Rozpoznanie zespołu metabolicznego wymaga obecności otyłości (najczęściej brzusznej) oraz co najmniej dwóch z trzech poniższych czynników: podwyższonego ciśnienia tętniczego, nieprawidłowego metabolizmu glukozy, podwyższonego stężenia cholesterolu frakcji nie-HDL (aterogenna dyslipidemia).
+
+  Nowa definicja jest uproszczoną wersją wcześniejszych, które obejmowały szerszy zakres kryteriów diagnostycznych, m.in. występowanie cukrzycy typu drugiego, insulinooporności, mikroalbuminurii, czy podwyższonego stężenia trójglicerydów w surowicy [@kalinowski2016]. Niezależnie od przyjętej definicji, niezmienne pozostaje stanowisko, że współwystępowanie wymienionych zaburzeń metabolicznych znacząco zwiększa ryzyko rozwoju chorób sercowo-naczyniowych -- w stopniu większym, niż każdy z tych czynników rozpatrywany oddzielnie.
+
+  Obecnie mówi się o zespole metabolicznym jako o epidemii o zasięgu globalnym [@saklayen2018]. Główne przyczyny jego rosnącej częstości to upowszechnienie siedzącego trybu życia oraz nadmierne spożycie wysokokalorycznych pokarmów, co przyczynia się do wzrostu otyłości -- jednego z kluczowych komponentów tego zespołu. W Stanach Zjednoczonych rozpowszechnienie zespołu metabolicznego w populacji dorosłych szacuje się na około 22%, przy czym w grupie pacjentów z cukrzycą typu 2 odsetek ten przekracza 80%. Co istotne, zespół coraz częściej diagnozowany jest również u dzieci i młodzieży, co stanowi poważne wyzwanie dla systemów ochrony zdrowia. Zjawisko to nie ogranicza się jedynie do krajów wysoko rozwiniętych – regiony takie jak Azja, Ameryka Łacińska czy Bliski Wschód odnotowują znaczący wzrost zachorowań, potwierdzając uniwersalny charakter tego zagrożenia zdrowotnego [@saklayen2018].
+
+  Z tego względu kluczowe jest zrozumienie mechanizmów leżących u podstaw zespołu metabolicznego oraz doskonalenie metod jego wczesnej diagnostyki, co może ułatwić skuteczną prewencję powikłań, w tym chorób sercowo-naczyniowych. Ze względu na rozbieżności w definicjach zespołu metabolicznego [@kalinowski2016], opracowanie jednolitego narzędzia analitycznego, które umożliwi wczesną, trafną i zautomatyzowaną identyfikację pacjentów zagrożonych jego wystąpieniem na podstawie danych klinicznych, jest wyjątkowo trudne. Celem niniejszego projektu jest stworzenie modelu predykcyjnego, który, bazując na danych klinicznych pacjentów, umożliwi identyfikację osób spełniających kryteria rozpoznania zespołu metabolicznego.
+
+\bigskip
+
+  **Podział prac w zespole** był następujący:
+
+\begin{tightlist}
+1.  Jaskuła Z. -- Przygotowanie i analiza zbioru danych
+
+2.  Kozakiewicz K. --
+
+3.  Miklaszewska N. --.
+\end{tightlist}
+
+\newpage
+
+# Przygotowanie i analiza zbioru danych
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+library(vtable) #funkcja st(), zamiast summary()
+library(knitr) #funkcja kable() do tabel
+library(kableExtra)
+library(dplyr) #%>%
+library(naniar) #funkcja gg_miss_upset()
+library(mice) #funkcja mice()
+library(gridExtra) #funkcja grid.arrange()
+library(ggcorrplot) #funkcja ggcorrplot()
+library(vcd) #funkcja assocstats() - współczynniki kontyngencji
+
+#przykładowa paleta kolorów, kolory UG
+paleta <- c("#F0F0F0", "#A0DCFA", "#508FE5", "#0041D0", "#052D73")
+```
+
+W projekcie wykorzystano dane pochodzące z publicznie dostępnego [[zbioru]{.underline}](https://www.kaggle.com/datasets/antimoni/metabolic-syndrome/data) opublikowanego na platformie Kaggle. Zawiera on zarówno informacje demograficzne, jak i kliniczne dotyczące pacjentów, sklasyfikowanych ze względu na obecność lub brak zespołu metabolicznego. Zbiór zawiera numer identyfikacyjny pacjentów, 9 zmiennych ilościowych oraz 5 zmiennych jakościowych. Umożliwia analizę zależności pomiędzy cechami jednostki a występowaniem schorzenia, co czyni go odpowiednim do zastosowań predykcyjnych. Szczegółowy opis zmiennych przedstawiono w tabeli poniżej:
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+tabela <- data.frame(
+  Zmienna = c("seqn", "Age", "Sex", "Marital", "Income", "Race", "WaistCirc", 
+              "BMI", "Albuminuria", "UrAlbCr", "UricAcid", "BloodGlucose",
+              "HDL", "Triglycerides", "MetabolicSyndrome"),
+  Opis = c("numer identyfikacyjny",
+           "wiek badanego (w latach)",
+           "płeć badanego (kobieta/mężczyzna)",
+           "stan cywilny jednostki",
+           "dochód",
+           "rasa",
+           "pomiar obwodu talii (w cm)",
+           "wskaźnik masy ciała",
+           "ilość albumin (białek) w moczu (wartości: 0, 1, 2)",
+           "stosunek albuminy do kreatyniny w moczu",
+           "poziom kwasu moczowego we krwi (w mg/dl)",
+           "poziom glukozy we krwi (w mg/dl)",
+           "poziom HDL (\"dobrego\" cholesterolu) (w mg/dl)",
+           "poziom trójglicerydów we krwi (w mg/dl)",
+           "obecność zespołu metabolicznego (0 = brak, 1 = obecność)")
+)
+
+kbl(tabela,
+  booktabs = TRUE,
+  caption = "Opis zmiennych zawartych w zbiorze danych") %>%
+  kable_styling(
+    latex_options = c("striped", "hold_position")) %>%
+  footnote(
+    general = "Źródło: opracowanie własne na podstawie zbioru danych",
+    general_title = "") %>%
+  column_spec(1, width = "4cm")
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# import zbioru danych
+dane_ms <- read.table("Metabolic Syndrome.csv",
+                      header = TRUE,
+                      sep = ",", 
+                      dec = ".",
+                      stringsAsFactors = TRUE)
+
+# zamiana `Albuminuria` i `MetabolicSyndrome` na zm. jakościowe
+dane_ms[c("Albuminuria", "MetabolicSyndrome")] <- 
+  lapply(dane_ms[c("Albuminuria", "MetabolicSyndrome")], factor)
+
+# usuwanie zmiennej `seqn`
+dane_kor <- dane_ms[-1]
+
+# wyświetlenie statystyk zbiorczych
+st(dane_ms,
+   out = "kable", digits = 4,
+   add.median = TRUE,
+   summ.names = c("N", "Średnia", "Odch. Std.", "Min", 
+                  "Q1", "Mediana", "Q3", "Max"),
+   title = "Statystyki zbiorcze") %>% 
+  kable_styling(latex_options = "striped", 
+                stripe_index = c(1:3, 6, 13:14, 21:23, 27:32)) %>% 
+  footnote(general = "Źródło: opracowanie własne na podstawie zbioru danych",
+           general_title = "") 
+```
+
+## Statystyki opisowe
+
+Zmiennymi demograficznymi uwzględnionymi w zbiorze są: wiek (`Age`), płeć (`Sex`), stan cywilny (`Marital`), dochód (`Income`) oraz rasa (`Race`). Część kliniczna obejmuje pomiary antropometryczne i wyniki badań laboratoryjnych istotnych w kontekście diagnostyki zespołu metabolicznego.
+
+  Zbiór danych obejmuje 2401 osób (1211 kobiet i 1190 mężczyzn) w wieku od 20 do 80 lat (średnia 48,69 lat). Większość badanych jest w średnim wieku. Wśród uczestników dominują osoby zamężne/żonate (ok. 50%), a rozkład dochodów jest zróżnicowany – od 300 do 9000 jednostek (średnio 4005). Dane obejmują też informacje o przynależności rasowej; największe grupy stanowią osoby białe (933 osób, co stanowi ok. 39% badanych) i czarnoskóre (548, ok. 23%).
+
+  Średni obwód talii wynosi 98,31 cm, przy czym wartości skrajne sięgają od 56,2 cm do 176 cm. Średnia wartość BMI to 28,7, co klasyfikuje przeciętnego badanego jako osobę z nadwagą [@BMI]. 25% badanych ma BMI powyżej 30, co jest klasyfikowane jako otyłość. W zestawie są zarówno osoby z niedowagą (BMI \< 17), jak i ze skrajną otyłością (BMI \> 40).
+
+  Albuminuria to zjawisko, gdy organizm wydala z organizmu białka wraz z moczem. Jest to naturalne, jednak wysokie stężenie albumin w moczu może być objawem nieprawidłowości w pracy nerek, spowodowanej np. cukrzycą lub nieskutecznie leczonym nadciśnieniem tętniczym [@albuminuria]. W zbiorze stężenie białek jest indykatorem o wartościach: 0 - normalne stężenie albumin, 1 - podwyższony poziom, 2 - bardzo wysoki poziom albumin (białkomocz). Osoby z podwyższonym poziomem stanowią mniejszość. W przypadku zmiennej `UrAlbCr` opisującej stosunek albuminy do kreatyniny widać, że posiada ona bardzo duży przedział wartości. Mediana wynosi 7,07, ale występują wartości skrajnie wysokie (maksymalnie 5928), wskazując na obecność odstających obserwacji.
+
+  Poziom kwasu moczowego (`UricAcid`) we krwi wynosi średnio 5,49 mg/dl; około 75% badanych ma wyniki mieszczące się w normie, która wynosi między 3 a 7 mg/dl, w zależności od płci. Podwyższone ilości kwasu moczowego mogą być skutkiem niewłaściwej diety, otyłości lub cukrzycy. Wśród potencjalnych przyczyn wymieniany jest również zespół metaboliczny [@kwas_moczowy].
+
+  Poziom glukozy we krwi (`BloodGlucose`) również pokazuje dużą zmienność – od bardzo niskich do bardzo wysokich wartości – przy medianie 99 mg/dl, co jest wartością prawidłową.
+
+  Średni poziom "dobrego" cholesterolu (`HDL`) wynosi 53,37 mg/dl. Około połowa uczestników ma nieprawidłowy poziom HDL w stosunku do zalecanych norm (zależnie od płci granica nieprawidłowej ilości HDL wynosi między 40-50 mg/dl [@HDL]). Średnie stężenie trójglicerydów (`Triglycerides`) wynosi 128,1 mg/dl, przy czym najwyższe wartości (1562 mg/dl) są znacznie powyżej poziomu bezpiecznego (150-199 mg/dl) [@trojglicerydy].
+
+  Zmienna `MetabolicSyndrome` informuje, że około 34,24% badanych ma już rozpoznany zespół metaboliczny. Dane medyczne zawarte w zbiorze odnoszą się do wyników badań oraz pomiarów, które w przeszłości były uznawane za istotne indykatory zespołu metabolicznego, jak wspomniano powyżej. W ramach niniejszego projektu zostanie przeanalizowane, czy na podstawie tych danych możliwe jest skuteczne przewidywanie występowania zespołu metabolicznego u pacjentów.
+
+## Analiza braków
+
+W zbiorze danych występują braki, które należy zbadać, i w miarę możliwości zniwelować. Z analizy statystyk opisowych wynika, że zmienna `Marital` zawiera 208 obserwacji oznaczonych jako "...". Ponadto zmienne `Income`, `WaistCirc` oraz `BMI` również zawierają braki, co zostało uwidocznione w tabeli statystyk zbiorczych, w kolumnie *N*, przedstawiającej liczbę obserwacji dla każdej z tych zmiennych. Sprawdzono, ile braków występuje dla każdej zmiennej oraz jaki stanowią one procent wszystkich obserwacji.
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+# zamiana pustych komórek na NA dla zmiennej `Marital`
+dane_ms <- dane_ms %>%
+  mutate(Marital = ifelse(as.character(Marital) == "",
+                          NA, as.character(Marital)))
+dane_ms$Marital <- as.factor(dane_ms$Marital)
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# wyświetlenie Tablicy 3.
+kbl(miss_var_summary(dane_ms[c("Marital", "Income", "WaistCirc", "BMI")]),
+    col.names = c("Zmienna", "Liczba braków", "Udział procentowy braków"),
+    caption = "Podsumowanie brakujących danych dla wybranych zmiennych",
+    booktabs = TRUE) %>% 
+  kable_styling(latex_options = c("striped", "hold_position")) %>% 
+  column_spec(2, width = "4.5cm") %>% 
+  footnote(general = "Źródło: opracowanie własne na podstawie zbioru danych",
+           general_title = "") 
+```
+
+  Najwięcej brakujących danych występuje w zmiennej `Marital` -- stanowią one 8,66% wszystkich obserwacji. Jest to odsetek przekraczający powszechnie akceptowany próg 5% braków. W pozostałych przypadkach braki stanowią mniej niż 5% wszystkich obserwacji. Dodatkowo, przeprowadzono analizę współwystępowania braków, uwzględniając zależności między brakującymi danymi w różnych zmiennych.
+
+\begin{center}
+Wykres 1: Rozkład braków oraz ich współwystępowania
+\end{center}
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# tworzenie wykresu braku danych
+gg_miss_upset(dane_ms[c("Marital", "Income", "WaistCirc", "BMI")], 
+                            matrix.color = paleta[4], 
+                            main.bar.color = paleta[4],
+                            mainbar.y.label = "Liczba przypadków", 
+                            sets.bar.color = paleta[5], 
+                            sets.x.label = "Liczba braków")
+```
+Źródło: opracowanie własne na podstawie zbioru danych \newline
+
+  Najczęściej występującymi brakami danych są pojedyncze braki w jednej z trzech zmiennych: stanie cywilnym, dochodach lub obwodzie talii. W zbiorze danych odnotowano 20 przypadków brakujących wartości jednocześnie dla zmiennych `BMI` i `WaistCirc`, a także 14 przypadków braków dotyczących jednocześnie zmiennych `Income` i `Marital`.
+
+  W celu uzupełnienia brakujących danych zastosowano metodę imputacji wielokrotnej z wykorzystaniem procedury MICE. Metoda ta polega na wygenerowaniu kilku uzupełnionych wersji zbioru danych, w których wartości brakujące są zastępowane prognozowanymi wartościami opartymi na pozostałych zmiennych. Wygenerowanie kilku różnych zestawów pozwala na uwzględnienie niepewności związanej z brakami [@marszalek2023].
+
+  Dla zmiennych ilościowych zastosowano technikę *PMM* (ang. *Predictive Mean Matching*). Polega ona na znalezieniu obserwacji z brakującą wartością, a następnie dopasowaniu jej do jednej z obserwacji nieposiadającej braków, która wykazuje najbardziej zbliżone wartości innych zmiennych objaśniających. Wartość brakująca zostaje zastąpiona wartością z dopasowanego rekordu, co pozwala zachować zgodność z rozkładem empirycznym zmiennej. Dla zmiennej jakościowej `Marital` użyto techniki *polyreg* (ang. *Polytomous logistic regression*), odpowiedniej dla zmiennych kategorycznych, nieuporządkowanych, o więcej niż dwóch wariantach [@mice].
+
+  W procesie tworzenia zestawów imputowanych danych uwzględniono zmienną `Age`, która nie zawierała braków, aby poprawić predykcje brakujących wartości. Następnie porównano rozkłady zestawów imputowanych danych na wykresach oraz porównano statystyki zestawów: ich średnie, mediany i odchylenia standardowe.
+
+```{r include=FALSE, results='hide'}
+# wybór zmiennych do imputacji
+zm_braki <- dane_ms[c("Age", "Marital", "Income", "WaistCirc", "BMI")]
+
+# imputacja
+imp_1 <- mice(zm_braki,
+              m = 5,
+              method = c("", "polyreg", "pmm", "pmm", "pmm"),
+              seed = 123)
+```
+
+\begin{center}
+Wykres 2: Rozkłady zestawów z imputowanymi danymi
+\end{center}
+
+```{r echo=FALSE}
+# rozkłady zm. po imputacji
+stripplot(imp_1, col = c(paleta[1], paleta[4]), pch = c(1, 20))[-1]
+```
+Źródło: opracowanie własne na podstawie zbioru danych \newline
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+statystyki <- function(x) {
+  c(Średnia = round(mean(x), 2), 
+    Mediana = round(median(x), 2), 
+    Odchylenie = round(sd(x), 2))
+}
+
+zmienne <- c("Income", "WaistCirc", "BMI")
+
+tabela_finalna <- do.call(rbind, lapply(zmienne, function(zm) {
+  oryg <- statystyki(dane_ms[[zm]][!is.na(dane_ms[[zm]])])
+  zestawy <- sapply(1:5, function(i) {
+    statystyki(complete(imp_1, i)[[zm]][is.na(dane_ms[[zm]])])
+  })
+  dane <- cbind(Zmienna = zm, 
+                Zestaw = c("Oryginalne", paste("Zestaw", 1:5)),
+                rbind(oryg, t(zestawy)))
+  rownames(dane) <- NULL
+  as.data.frame(dane)
+}))
+
+tabela_finalna[, 3:5] <- lapply(tabela_finalna[, 3:5], as.numeric)
+
+# Wyświetlenie + ręczne paskowanie wierszy 1, 7, 13
+kbl(tabela_finalna, 
+    caption = "Statystyki imputacji dla Income, WaistCirc i BMI",
+    booktabs = TRUE) %>%
+  kable_styling(latex_options = "hold_position") %>%
+  row_spec(c(1, 7, 13), background = "#F2F2F2") %>%
+  column_spec(1:2, width = "4cm") %>% 
+  footnote(general = "Źródło: opracowanie własne na podstawie zbioru danych", 
+           general_title = "")
+```
+
+  Na podstawie analizy statystyk imputowanych zestawów danych stwierdzono, że zestaw 2 najtrafniej odwzorowuje rozkłady zmiennych oryginalnych. W przypadku dochodu zestaw ten ma statystyki nieco bardziej odchylone od statystyk oryginalnych danych, ale zbliżone wartości średnich, median oraz odchyleń standardowych dla obwodu w talii oraz BMI uzasadniają wybór tego zestawu do dalszych działań.
+
+```{r include=FALSE}
+# wybór kompletnego zestawu danych
+imputed <- complete(imp_1, 2)
+
+# podmiana zmiennych w głównym zbiorze
+dane_ms[c("Age", "Marital", "Income", "WaistCirc", "BMI")] <- imputed
+```
+
+## Wizualizacje rozkładów
+
+W celu lepszego zrozumienia struktury danych oraz identyfikacji potencjalnych różnic pomiędzy grupami pacjentów z rozpoznanym zespołem metabolicznym i bez niego, przeprowadzono wizualizację rozkładów zmiennych ilościowych. Dla każdej z tych zmiennych utworzono histogramy, które umożliwiają ocenę kształtu rozkładu oraz porównanie wartości pomiędzy dwiema grupami zdefiniowanymi przez zmienną `MetabolicSyndrome`.
+\newpage
+
+\begin{center}
+Wykres 3: Rozkłady zmiennych ilościowych
+\end{center}
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ilosciowe <- c("Age", "Income", "WaistCirc", "BMI", "UrAlbCr",
+               "UricAcid", "BloodGlucose", "HDL", "Triglycerides")
+wykresy <- list()
+
+for (i in seq_along(ilosciowe)) {
+  zmienna <- ilosciowe[i]
+  fill_col <- if (i %% 2 == 1) paleta[2] else paleta[4]
+  line_col <- if (i %% 2 == 1) paleta[3] else paleta[5]
+
+  wykresy[[i]] <- ggplot(dane_ms, aes_string(x = zmienna)) +
+    geom_histogram(bins = 8,
+                   fill = fill_col,
+                   color = line_col, alpha = 0.9) +
+    labs(title = zmienna, y = "Częstość") +
+    theme_minimal() +
+    theme(
+      plot.title = element_text(hjust = 0.5),
+      axis.title.x = element_blank()
+    )
+}
+
+grid.arrange(grobs = wykresy, ncol = 3)
+```
+Źródło: opracowanie własne na podstawie zbioru danych \newline
+
+  Histogramy zmiennych `BMI`, `UrAlbCr`, `BloodGlucose`, `HDL` oraz `Triglycerides` pokazują, że zmienne te zawierają wartości odstające, które mogą negatywnie wpływać na predykcje modelu. Zmienna `WaistCirc` również nie ma rozkładu normalnego, jednak jej zbiór wartości jest najbardziej "spójny" i nie zawiera punktów odstających o bardzo dużych wartościach. Rozkład wieku wskazuje, że w zbiorze znajduje się mniej więcej po tyle samo pacjentów (między 300 a 400 osób) w każdej grupie wiekowej, z wyjątkiem osób w wieku 20 lat, których jest kilkukrotnie mniej. W przypadku stosunku albumin do keratyniny w moczu niezbędne jest zlogarytmowanie zmiennej, ponieważ wartości odstające uniemożliwiają dokładną analizę rozkładu wartości.
+
+\begin{center}
+Wykres 4: Rozkłady zmiennych ilościowych z uwzględnieniem informacji o posiadaniu lub nieposiadaniu zespołu metabolicznego
+\end{center}
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# transformacja logarytmiczna zmiennej `UrAlbCr`
+dane_ms$UrAlbCr <- log2(dane_ms$UrAlbCr)
+plots <- list()
+
+for (i in seq_along(ilosciowe)) {
+  zmienna <- ilosciowe[i]
+  
+  plots[[i]] <- ggplot(dane_ms, aes(x = .data[[zmienna]],
+                                    fill = factor(MetabolicSyndrome),
+                                    color = factor(MetabolicSyndrome))) + 
+    geom_histogram(position = "identity", alpha = 0.7) +
+    scale_fill_manual(values = c(paleta[4], paleta[2])) +
+    scale_color_manual(values = c(paleta[5], paleta[3])) +
+    labs(title = zmienna, y = "Gęstość") +
+  guides(
+    fill = guide_legend(title = "Zespół metaboliczny"),
+    color = guide_legend(title = "Zespół metaboliczny")
+  ) +
+    theme_minimal() +
+    theme(
+      plot.title = element_text(hjust = 0.5),
+      axis.title.x = element_blank(),
+      legend.position = if (i == 4) c(0.72, 0.75) else "none"
+    )
+}
+
+grid.arrange(grobs = plots[1:4], ncol = 2)
+grid.arrange(grobs = plots[5:8], ncol = 2)
+grid.arrange(grobs = plots[9], ncol = 2, nrow = 2)
+```
+
+  Po stworzeniu oddzielnych wykresów gęstości dla osób z zespołem metabolicznym oraz bez niego, zauważalna jest znaczna różnica w rozkładach niektórych zmiennych. Analizując histogram wieku osób zdrowych, można stwierdzić, że większość z nich to osoby poniżej 45. roku życia, a rozkład wieku w tej grupie przyjmuje charakter prawoskośny. Z kolei histogram osób z zespołem metabolicznym wykazuje bardziej wyrównany rozkład, z widoczną koncentracją przypadków w starszych grupach wiekowych, co może sugerować zwiększone ryzyko wystąpienia zespołu metabolicznego w późniejszym wieku. W przypadku zmiennych takich jak obwód talii oraz wskaźnik BMI, również dostrzega się przesunięcie wykresu gęstości w prawo dla osób chorych. Podobny trend występuje w przypadku poziomu kwasu moczowego we krwi oraz glukozy. Natomiast rozkład zmiennej `HDL` wśród osób z zespołem metabolicznym charakteryzuje się niższymi wartościami HDL w porównaniu do osób zdrowych. Z kolei dochody nie wykazują istotnych różnic pomiędzy obiema grupami. Histogram zmiennej `UrAlbCr` po zastosowaniu transformacji logarytmicznej jest łatwiejszy do interpretacji. Z analizy wynika, że osoby chore częściej wykazują wyższe poziomy tej zmiennej w porównaniu do osób zdrowych.
+
+## Analiza korelacji i zależności między zmiennymi
+
+Analizę korelacji podzielono na trzy części: analizę korelacji między zmiennymi ilościowymi (z wykorzystaniem *korelacji Pearsona*), jakościowymi (*współczynnik kontyngencji V Cramera*) oraz między zmiennymi ilościowymi a jakościowymi.
+
+\begin{center}
+Wykres 5: Korelacje między zmiennymi ilościowymi
+\end{center}
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+model.matrix(~0+., data = dane_ms%>% select_if(is.numeric)) %>% 
+  cor(use = "pairwise.complete.obs") %>% 
+  ggcorrplot(title = "Wykres korelacji między zmiennymi",
+             type = "upper",
+             lab = TRUE, 
+             colors = c(paleta[2], paleta[1], paleta[3],paleta[4]),
+             lab_size = 2.5, 
+             ggtheme = theme_classic)
+```
+
+  Między analizowanymi zmiennymi ilościowymi zaobserwowano słabe korelacje, z wyjątkiem pary `BMI` i `WaistCirc`. Ze względu na możliwość wystąpienia współliniowości, obwód w talii został wykluczony z dalszych analiz. Uznano, że wskaźnik `BMI` niesie więcej informacji, ponieważ uwzględnia zarówno masę ciała, jak i wzrost pacjenta.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+jakosciowe <- c("Sex", "Marital", "Race", "Albuminuria", "MetabolicSyndrome")
+kor.cramer <- matrix(NA, nrow = length(jakosciowe),
+                     ncol = length(jakosciowe),
+                     dimnames = list(jakosciowe, jakosciowe))
+
+for (i in jakosciowe) {
+  for (j in jakosciowe) {
+    kor.cramer[i, j] <- round(assocstats(table(dane_ms[[i]], 
+                                               dane_ms[[j]]))$cramer, 2)
+  }}
+
+
+kbl(kor.cramer,
+    caption = "Korelacje między zmiennymi jakościowymi",
+    booktabs = TRUE)
+```
+
+  Dla par zmiennych jakościowych obliczono współczynnik kontyngencji V Craméra. Przyjęto, że korelacja jest silna, gdy $V > 0{,}5$. W analizowanym zbiorze danych nie stwierdzono wartości przekraczających przyjęty próg.
+
+  **Współczynnik korelacji punktowo-dwuseryjnej** pomiędzy zmienną ciągłą $X$ a zmienną dychotomiczną jest obliczany ze wzoru: $$r= \frac{(\overline{X} - \overline{X_{0}})\sqrt{\pi \cdot (1- \pi)}}{S_x}$$ Jest on równoważny wsp. korelacji Pearsona.
+
+\newpage
+
+# Budowa modeli
+
+\newpage
+
+# Ocena modeli i interpretacja modelu wynikowego
+
+\newpage
+
+# Podsumowanie i wnioski
+
+------------------------------------------------------------------------
+
+\newpage
+
+# Bibliografia
