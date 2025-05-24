@@ -56,6 +56,8 @@ library(mice) #funkcja mice()
 library(gridExtra) #funkcja grid.arrange()
 library(ggcorrplot) #funkcja ggcorrplot()
 library(vcd) #funkcja assocstats() - współczynniki kontyngencji
+library(lmtest) # testy LR i Walda
+library(car) # funkcja vif
 
 #przykładowa paleta kolorów, kolory UG
 paleta <- c("#F0F0F0", "#A0DCFA", "#508FE5", "#0041D0", "#052D73")
@@ -98,18 +100,18 @@ kbl(tabela,
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 # import zbioru danych
-dane_ms <- read.table("Metabolic Syndrome.csv",
+dane <- read.table("Metabolic Syndrome.csv",
                       header = TRUE,
                       sep = ",", 
                       dec = ".",
                       stringsAsFactors = TRUE)
 
 # zamiana `Albuminuria` i `MetabolicSyndrome` na zm. jakościowe
-dane_ms[c("Albuminuria", "MetabolicSyndrome")] <- 
-  lapply(dane_ms[c("Albuminuria", "MetabolicSyndrome")], factor)
+dane[c("Albuminuria", "MetabolicSyndrome")] <- 
+  lapply(dane[c("Albuminuria", "MetabolicSyndrome")], factor)
 
 # usuwanie zmiennej `seqn`
-dane_kor <- dane_ms[-1]
+dane_ms <- dane[-1]
 
 # wyświetlenie statystyk zbiorczych
 st(dane_ms,
@@ -181,6 +183,7 @@ gg_miss_upset(dane_ms[c("Marital", "Income", "WaistCirc", "BMI")],
                             sets.bar.color = paleta[5], 
                             sets.x.label = "Liczba braków")
 ```
+
 Źródło: opracowanie własne na podstawie zbioru danych \newline
 
   Najczęściej występującymi brakami danych są pojedyncze braki w jednej z trzech zmiennych: stanie cywilnym, dochodach lub obwodzie talii. W zbiorze danych odnotowano 20 przypadków brakujących wartości jednocześnie dla zmiennych `BMI` i `WaistCirc`, a także 14 przypadków braków dotyczących jednocześnie zmiennych `Income` i `Marital`.
@@ -210,6 +213,7 @@ Wykres 2: Rozkłady zestawów z imputowanymi danymi
 # rozkłady zm. po imputacji
 stripplot(imp_1, col = c(paleta[1], paleta[4]), pch = c(1, 20))[-1]
 ```
+
 Źródło: opracowanie własne na podstawie zbioru danych \newline
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
@@ -258,8 +262,7 @@ dane_ms[c("Age", "Marital", "Income", "WaistCirc", "BMI")] <- imputed
 
 ## Wizualizacje rozkładów
 
-W celu lepszego zrozumienia struktury danych oraz identyfikacji potencjalnych różnic pomiędzy grupami pacjentów z rozpoznanym zespołem metabolicznym i bez niego, przeprowadzono wizualizację rozkładów zmiennych ilościowych. Dla każdej z tych zmiennych utworzono histogramy, które umożliwiają ocenę kształtu rozkładu oraz porównanie wartości pomiędzy dwiema grupami zdefiniowanymi przez zmienną `MetabolicSyndrome`.
-\newpage
+W celu lepszego zrozumienia struktury danych oraz identyfikacji potencjalnych różnic pomiędzy grupami pacjentów z rozpoznanym zespołem metabolicznym i bez niego, przeprowadzono wizualizację rozkładów zmiennych ilościowych. Dla każdej z tych zmiennych utworzono histogramy, które umożliwiają ocenę kształtu rozkładu oraz porównanie wartości pomiędzy dwiema grupami zdefiniowanymi przez zmienną `MetabolicSyndrome`. \newpage
 
 \begin{center}
 Wykres 3: Rozkłady zmiennych ilościowych
@@ -289,6 +292,7 @@ for (i in seq_along(ilosciowe)) {
 
 grid.arrange(grobs = wykresy, ncol = 3)
 ```
+
 Źródło: opracowanie własne na podstawie zbioru danych \newline
 
   Histogramy zmiennych `BMI`, `UrAlbCr`, `BloodGlucose`, `HDL` oraz `Triglycerides` pokazują, że zmienne te zawierają wartości odstające, które mogą negatywnie wpływać na predykcje modelu. Zmienna `WaistCirc` również nie ma rozkładu normalnego, jednak jej zbiór wartości jest najbardziej "spójny" i nie zawiera punktów odstających o bardzo dużych wartościach. Rozkład wieku wskazuje, że w zbiorze znajduje się mniej więcej po tyle samo pacjentów (między 300 a 400 osób) w każdej grupie wiekowej, z wyjątkiem osób w wieku 20 lat, których jest kilkukrotnie mniej. W przypadku stosunku albumin do keratyniny w moczu niezbędne jest zlogarytmowanie zmiennej, ponieważ wartości odstające uniemożliwiają dokładną analizę rozkładu wartości.
@@ -297,7 +301,7 @@ grid.arrange(grobs = wykresy, ncol = 3)
 Wykres 4: Rozkłady zmiennych ilościowych z uwzględnieniem informacji o posiadaniu lub nieposiadaniu zespołu metabolicznego
 \end{center}
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=8, fig.height=11}
 # transformacja logarytmiczna zmiennej `UrAlbCr`
 dane_ms$UrAlbCr <- log2(dane_ms$UrAlbCr)
 plots <- list()
@@ -311,7 +315,7 @@ for (i in seq_along(ilosciowe)) {
     geom_histogram(position = "identity", alpha = 0.7) +
     scale_fill_manual(values = c(paleta[4], paleta[2])) +
     scale_color_manual(values = c(paleta[5], paleta[3])) +
-    labs(title = zmienna, y = "Gęstość") +
+    labs(title = zmienna, y = "Częstość") +
   guides(
     fill = guide_legend(title = "Zespół metaboliczny"),
     color = guide_legend(title = "Zespół metaboliczny")
@@ -324,12 +328,14 @@ for (i in seq_along(ilosciowe)) {
     )
 }
 
-grid.arrange(grobs = plots[1:4], ncol = 2)
-grid.arrange(grobs = plots[5:8], ncol = 2)
-grid.arrange(grobs = plots[9], ncol = 2, nrow = 2)
+grid.arrange(grobs = plots[1:6], ncol = 2)
 ```
 
-  Po stworzeniu oddzielnych wykresów gęstości dla osób z zespołem metabolicznym oraz bez niego, zauważalna jest znaczna różnica w rozkładach niektórych zmiennych. Analizując histogram wieku osób zdrowych, można stwierdzić, że większość z nich to osoby poniżej 45. roku życia, a rozkład wieku w tej grupie przyjmuje charakter prawoskośny. Z kolei histogram osób z zespołem metabolicznym wykazuje bardziej wyrównany rozkład, z widoczną koncentracją przypadków w starszych grupach wiekowych, co może sugerować zwiększone ryzyko wystąpienia zespołu metabolicznego w późniejszym wieku. W przypadku zmiennych takich jak obwód talii oraz wskaźnik BMI, również dostrzega się przesunięcie wykresu gęstości w prawo dla osób chorych. Podobny trend występuje w przypadku poziomu kwasu moczowego we krwi oraz glukozy. Natomiast rozkład zmiennej `HDL` wśród osób z zespołem metabolicznym charakteryzuje się niższymi wartościami HDL w porównaniu do osób zdrowych. Z kolei dochody nie wykazują istotnych różnic pomiędzy obiema grupami. Histogram zmiennej `UrAlbCr` po zastosowaniu transformacji logarytmicznej jest łatwiejszy do interpretacji. Z analizy wynika, że osoby chore częściej wykazują wyższe poziomy tej zmiennej w porównaniu do osób zdrowych.
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=8, fig.height=7}
+grid.arrange(grobs = plots[7:9], ncol = 2)
+```
+
+  Po stworzeniu oddzielnych wykresów częstości dla osób z zespołem metabolicznym oraz bez niego, zauważalna jest znaczna różnica w rozkładach niektórych zmiennych. Analizując histogram wieku osób zdrowych, można stwierdzić, że większość z nich to osoby poniżej 45. roku życia, a rozkład wieku w tej grupie przyjmuje charakter prawoskośny. Z kolei histogram osób z zespołem metabolicznym wykazuje bardziej wyrównany rozkład, z widoczną koncentracją przypadków w starszych grupach wiekowych, co może sugerować zwiększone ryzyko wystąpienia zespołu metabolicznego w późniejszym wieku. W przypadku zmiennych takich jak obwód talii oraz wskaźnik BMI, również dostrzega się przesunięcie wykresu częstości w prawo dla osób chorych. Podobny trend występuje w przypadku poziomu kwasu moczowego we krwi oraz glukozy. Natomiast rozkład zmiennej `HDL` wśród osób z zespołem metabolicznym charakteryzuje się niższymi wartościami HDL w porównaniu do osób zdrowych. Z kolei dochody nie wykazują istotnych różnic pomiędzy obiema grupami. Histogram zmiennej `UrAlbCr` po zastosowaniu transformacji logarytmicznej jest łatwiejszy do interpretacji. Z analizy wynika, że osoby chore częściej wykazują wyższe poziomy tej zmiennej w porównaniu do osób zdrowych.
 
 ## Analiza korelacji i zależności między zmiennymi
 
@@ -340,7 +346,7 @@ Wykres 5: Korelacje między zmiennymi ilościowymi
 \end{center}
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
-model.matrix(~0+., data = dane_ms%>% select_if(is.numeric)) %>% 
+model.matrix(~0+., data = dane_ms %>% select_if(is.numeric)) %>% 
   cor(use = "pairwise.complete.obs") %>% 
   ggcorrplot(title = "Wykres korelacji między zmiennymi",
              type = "upper",
@@ -353,7 +359,7 @@ model.matrix(~0+., data = dane_ms%>% select_if(is.numeric)) %>%
   Między analizowanymi zmiennymi ilościowymi zaobserwowano słabe korelacje, z wyjątkiem pary `BMI` i `WaistCirc`. Ze względu na możliwość wystąpienia współliniowości, obwód w talii został wykluczony z dalszych analiz. Uznano, że wskaźnik `BMI` niesie więcej informacji, ponieważ uwzględnia zarówno masę ciała, jak i wzrost pacjenta.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
-jakosciowe <- c("Sex", "Marital", "Race", "Albuminuria", "MetabolicSyndrome")
+jakosciowe <- c("Sex", "Marital", "Race", "Albuminuria")
 kor.cramer <- matrix(NA, nrow = length(jakosciowe),
                      ncol = length(jakosciowe),
                      dimnames = list(jakosciowe, jakosciowe))
@@ -367,20 +373,225 @@ for (i in jakosciowe) {
 
 kbl(kor.cramer,
     caption = "Korelacje między zmiennymi jakościowymi",
-    booktabs = TRUE)
+    booktabs = TRUE) %>%
+  kable_styling(
+    latex_options = c("hold_position"))
 ```
 
   Dla par zmiennych jakościowych obliczono współczynnik kontyngencji V Craméra. Przyjęto, że korelacja jest silna, gdy $V > 0{,}5$. W analizowanym zbiorze danych nie stwierdzono wartości przekraczających przyjęty próg.
 
   **Współczynnik korelacji punktowo-dwuseryjnej** pomiędzy zmienną ciągłą $X$ a zmienną dychotomiczną jest obliczany ze wzoru: $$r= \frac{(\overline{X} - \overline{X_{0}})\sqrt{\pi \cdot (1- \pi)}}{S_x}$$ Jest on równoważny wsp. korelacji Pearsona.
 
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+dane_kor <- dane_ms %>%
+  mutate(Race = as.numeric(factor(Race)) - 1, Sex = as.numeric(factor(Sex)) - 1,
+         Marital = as.numeric(factor(Marital)) - 1, 
+         Albuminuria = as.numeric(factor(Albuminuria)) - 1)
+
+kor.pd <- round(cor(dane_kor[,c(1,4,6,7,9:13)], dane_kor[,c(2,3,5,8)]),2)
+
+kbl(kor.pd,
+    caption = "Korelacje między zmiennymi ilościowymi a jakościowymi",
+    booktabs = TRUE) %>%
+  kable_styling(
+    latex_options = c("hold_position"))
+```
+
+  Między zmiennymi nie występują silne korelacje, z wyjątkiem jednej pary: `UrAlbCr` i `Albuminuria`. Obydwie zmienne związane są ze stężeniem albumin, jednak pierwsza z nich jest zmienną ilościową. Z tego powodu uznana została za zmienną zawierającą więcej informacji i tym samym tylko ona z tej pary uwzględniona zostanie w dalszych analizach. (jakieś lepsze wytłumacznie ale nwm ...?)
+
 \newpage
 
 # Budowa modeli
 
+W celu otrzymania modelu z jak najlepszą zdolnością predykcyjną, przed przystąpieniem do jego budowy, oryginalne dane podzielone zostały na zbiór uczący i zbiór testowy. Modele budowane będą na zbiorze uczącym, który stanowi 70% całego zbioru danych, natomiast testowane będą na zbiorze testowym, który stanowi 30% oryginalnego zbioru. Taki podział pozwoli uniknąć przeuczenia modelu i możliwe będzie sprawdzenie jak radzi on sobie z nowymi danymi. W tabeli poniżej znajdują się proporcje wariantów zmiennej zależnej `MetabolicSyndrome` w pełnych danych i w danych uczących i testowych.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+set.seed(123)
+n <- nrow(dane_ms)
+l_losowe <- sample(c(1:n), round(0.7*n), replace = FALSE)
+dane_u <- dane_ms[l_losowe,]
+dane_t <- dane_ms[-l_losowe,]
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+tabela <- rbind(
+  "dane" = as.numeric(prop.table(table(dane_ms$MetabolicSyndrome))),
+  "zbiór uczący" = as.numeric(prop.table(table(dane_u$MetabolicSyndrome))),
+  "zbiór testowy" = as.numeric(prop.table(table(dane_t$MetabolicSyndrome)))
+)
+
+colnames(tabela) <- names(tabela)
+colnames(tabela) <- c(0, 1)
+
+kbl(round(tabela, 3),
+    caption = "Proporcje w zbiorach danych",
+    booktabs = TRUE) %>%
+  kable_styling(
+    latex_options = c("hold_position")) %>%
+  column_spec(c(1:2, 2:3), width = "4cm") %>% 
+  footnote(general = "Źródło: opracowanie własne na podstawie zbioru danych", 
+           general_title = "")
+```
+
+  Jak widać przy podziale na dwa zbiory, proporcje "odpowiedzi" zostały zachowane, zatem obydwa podzbiory dobrze reprezentują oryginalny zbiór danych.
+
+  (...?) Jak zostało to określone wcześniej, zmienną objaśnianą jest zmienna dychotomiczna `MetabolicSyndrome`. Zmiennymi objaśniającymi będą natomiast wszystkie wymienione w poprzednim rodziale zmienne z wyjątkiem dwóch. Przy analizie korelacji zmienne `BMI` i `WaistCirc` oraz `Albuminuria` i `UrAlbCr` wykazały między sobą zbyt dużą korelację, w wyniku czego zmienne `WaistCirc` i `Albuminuria` wykluczone zostały z dalszych analiz. Do budowy modeli, jako zmienne objaśniające, wykorzystane zostaną zatem 3 zmienne jakościowe (`Sex`, `Marital`, `Race`) oraz 8 zmiennych ilościowych (`Age`, `Income`, `BMI`, `UrAlbCr`, `UricAcid`, `BloodGlucose`, `HDL`, `Triglycerides`).
+
+## Estymacja modelu dwumianowego logitowego
+
+  Estymowane będą modele dwumianowe logitowe ... jakiś opis co to
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+model_logit0 <- glm(MetabolicSyndrome ~ Age + Sex + Marital + Race + Income + 
+                      BMI + UrAlbCr + UricAcid + BloodGlucose + HDL + Triglycerides, 
+                   data = dane_u, family = binomial)
+# library("jtools")
+# summ(model_logit0)
+summary(model_logit0)
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+lrtest(model_logit0)
+```
+
+  Aby stwierdzić istotność wszystkich niezależnych zmiennych w modelu wykonany został test ilorazu wiarygodności. Test ten porównuje model zerowy (bez żadnych zmiennych) z modelem z dodatkowymi, w tym przypadku, 11 zmiennymi. Hipoteza zerowa dla testu zakłada brak związku między zmiennymi niezależnymi a zmienną zależną, a zatem test sprawdza czy dodatkowe zmienne wnoszą coś (...?) do modelu. P-wartość dla statystyki $\chi^2$ dla testu dla modelu `logit0` jest mniejsza niż przyjęty poziom istotności $\alpha = 0.05$. Odrzucamy zatem hipotezę zerową na rzecz hipotezy alternatywnej, tym samym stwierdzając, że dodatkowe zmienne istotnie wpływają na zmienną zależną.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+vif(model_logit0)
+```
+
+  opis vif, wszystko spoko
+
+  Z podsumowania modelu natomiast, możemy odczytać, że nie wszystkie zmienne (oddzielnie) są istotne przy jego budowie. P-wartości dla statystyki $z$ wyższe od poziomu istotności $\alpha = 0.1$ widoczne są dla zmiennych `Race` i `Income`, co wskazuje na ich nieistotność. Niższą istotność wykazują także zmienne `Marital`, `UrAlbCr` oraz `UricAcid`. W takim wypadku wyestymowany zostanie nowy model logitowy uwzględniający wcześniej wykorzystane zmienne z wyjątkiem zmiennych zupełnie nieistotnych (`Race`, `Income`).
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+model_logit1 <- glm(MetabolicSyndrome ~ Age + Sex + Marital + BMI + UrAlbCr + 
+                      UricAcid + BloodGlucose + HDL + Triglycerides, 
+                   data = dane_u, family = binomial)
+summary(model_logit1)
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+lrtest(model_logit1)
+```
+
+  Dla powyższego modelu, również wykonany został test ilorazu wiarygodności. P-wartość dla statystyki $\chi^2$ jest mniejsza od przyjętego poziomu istotności ($\alpha = 0.05$), co także w tym przypadku pozwala na odrzucenie hipotezy zerowej, mówiącej o nieistotności wszystkich zmiennych w modelu.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+vif(model_logit1)
+```
+
+  Wartości VIF też blisko 1 spoko. (...?)
+
+  Podsumowanie modelu `logit1` nie wskazuje żadnych zupełnie nieistotnych zmiennych. Można jednak zauważyć, że warianty zmiennej `Marital` wykazują różną istotność. W szczegolności p-wartość dla wariantu `Marital: Married` jest wyższa od najwyższego poziomu istotności (równego 0.1), wskazując na jego nieistotność. Inne warianty istotne są na poziomach 0.05 i 0.1, co jest wynikiem gorszym niż dla pozostałych zmiennych. Warto także odnotować, że p-wartości dla zmiennych `UrAlbCr` i `UricAcid` zmieniły się minimalnie, co, po usunięciu nieistotnych zmiennych, nie poprawiło mocno ich istotności. Aby sprawdzić czy zmienna `Marital` faktycznie nie wpływa znacznie na zmienną objaśnianą, wykonany zostanie nowy model, poprzez usnięcie jej ze zmiennych objaśniających.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+model_logit2 <- glm(MetabolicSyndrome ~ Age + Sex + BMI + UrAlbCr + UricAcid + 
+                      BloodGlucose + HDL + Triglycerides, 
+                   data = dane_u, family = binomial)
+summary(model_logit2)
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+lrtest(model_logit2)
+```
+
+  git
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+vif(model_logit2)
+```
+
+  vif -\> git
+
+  Z podsumowania modelu wynika, że wszystkie zmienne objaśniające są istotne, przy czym istotność zmiennych `UrAlbCr` i `UricAcid` nadal jest na poziomie ok. 0.05. (nie wiem czy można tak pisać ...?) Co więcej usunięcie zmiennej `Marital` z modelu podwyższyło wartość AIC z 1206 (model `logit1`) na 1214, przy czym warto zauważyć, że jest to także wartość wyższa od AIC dla modelu `logit0` (modelu ze wszystkimi zmiennymi objasniającymi), która była równa 1213. Zdaje się zatem, że usuwanie kolejnych zmiennych może mieć podobny efekt i również jedynie pogorszać wartości AIC dla modelu.
+
+## Estymacja modelu probitowego
+
+  Jakiś opis I guess
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+model_probit0 <- glm(MetabolicSyndrome ~ Age + Sex + Marital + Race + Income + BMI + 
+                 UrAlbCr + UricAcid + BloodGlucose + HDL + Triglycerides, 
+               data = dane_u, family = binomial(link=probit))
+summary(model_probit0)
+```
+
+```{r}
+lrtest(model_probit0)
+```
+
+  spoko
+
+```{r}
+vif(model_probit0)
+```
+
+  vif -\> spoko
+
+  Tak jak w przypadku modelu `logit0`, zmienne `Race` i `Income` zdają się być nieistotne, p-wartości dla statystyki $z$ są dużo wyższe niż najwyższy z poziomów istotności ($\alpha = 0.1$). Co więcej w przypadku zmiennej `Marital` możemy zaobserwować podobną sytuację, jak dla modeli logitowych. Dwa warianty tej zmiennej także nie są istotne. Ponieważ w poprzednim przypadku usunięcie tej zmiennej pogorszyło wartość AIC, w pierwszej kolejności powstanie model bez zmiennych zupełnie nieistotnych (`Race`,`Income`). (...coś więcej?)
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+model_probit1 <- glm(MetabolicSyndrome ~ Age + Sex + Marital + BMI + UrAlbCr + 
+                      UricAcid + BloodGlucose + HDL + Triglycerides, 
+                   data = dane_u, family = binomial(link=probit))
+summary(model_probit1)
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# model_probit2 <- glm(MetabolicSyndrome ~ Age + Sex + BMI + UrAlbCr + UricAcid + 
+#                  BloodGlucose + HDL + Triglycerides, 
+#                data = dane_u, family = binomial(link=probit))
+# summary(model_probit2)
+```
+
+## Estymacja modelu logitowego z interakcjami
+
+```{r}
+model1 <- glm(MetabolicSyndrome ~ Age*BloodGlucose + Sex + BMI + UrAlbCr + UricAcid + 
+                      HDL + Triglycerides,
+                  data = dane_u, family = binomial)
+summary(model1)
+```
+
+```{r}
+model2 <- glm(MetabolicSyndrome ~ Age*BloodGlucose + Sex + BMI + UrAlbCr + UricAcid + 
+                      HDL + Triglycerides + Sex:HDL,
+                  data = dane_u, family = binomial)
+summary(model2)
+```
+
+```{r}
+model3 <- glm(MetabolicSyndrome ~ Age*BloodGlucose + Sex + BMI + UrAlbCr + UricAcid + 
+                      HDL + Triglycerides + Sex:HDL + Age:UricAcid,
+                  data = dane_u, family = binomial)
+summary(model3)
+```
+
+```{r}
+model4 <- glm(MetabolicSyndrome ~ Age*BloodGlucose + Sex + BMI + UrAlbCr + UricAcid + 
+                      HDL + Triglycerides + Sex:HDL + Age:UricAcid + HDL:Triglycerides,
+                  data = dane_u, family = binomial)
+summary(model4)
+```
+
+ISTOTNOŚĆ: Age*BloodGlucose -\> tak (zwykle pogarsza się z wiekiem) + Sex*HDL -\> tak (kobiety mają wyższe) + Age*UricAcid -\> tak (zwykle zwiększa się z wiekiem) + HDL*Triglycerides -\> tak, ale może już być przeuczony i zbyt skomplikowany UricAcid*BMI -\> nie Sex*BMI -\> nie UricAcid*BloodGlucose -\> nie BMI*Triglycerides -\> nie BMI\*BloodGlucose -\> nie nie wiem czy jeszcze jakieś
+
+ostatni ma niby najlepsze AIC ze wszystkich modeli (sprawdzone ze step)
+
+NOTATKI: OPISY TO WORK IN PROGRESS modele logitowe: usuniecie najpierw income pozniej race nie ma znaczenia wiec usunelam od razu obydwa na raz a drugi model z usunieciem marital nie jestem pewna, aic wychodzi wieksze ale nie do konca jest istotne, wiec zostawilam do testow usuniecie tych zmiennych ktore sa mniej istotne w sumie tez nie ma sensu bo aic znowu wieksze i nie ma jakichs dobrych powodow wazne: step(logit0) daje model logit1, wiec to usuniecie marital i w logitowym i probitowym moze nie miec az takiego sensu, chociaz imo w logitowym mozna zostawic tak zeby sprawdzic modele probitowe: tylko jeden dodatkowy, z tym marital wyszlo podobnie jak z logitowym wiec tu juz nie dodawalam kolejnego z interakcjami: opis wyżej, wzielam interakcje takie ktore maja sens ogólnie, sprawdziłam tez wszystkie interakcje (miedzy wszystkimi zmiennymi z funkcja step) i byly takie ktore byly istotne ale troche bezsensowne wiec nie wiem
+
+-   wszystkie byly sprawdzone z funkcja step()
+
 \newpage
 
 # Ocena modeli i interpretacja modelu wynikowego
+
+## Ocena dopasowania modeli
+
+## Ocena jakości predykcji
+
+## Interpretacja modelu wynikowego
 
 \newpage
 
