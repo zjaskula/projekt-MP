@@ -12,78 +12,36 @@ bibliography: references.bib
 csl: "nowa-audiofonologia.csl"
 lang: pl
 link-citations: true
-editor_options: 
-  markdown: 
-    wrap: 72
 ---
 
 \newpage
 
 # Wstęp
 
-Zespół metaboliczny jest istotnym wyzwaniem dla zdrowia publicznego i
-epidemiologii. Został po raz pierwszy opisany w 1981 roku, a jego
-definicja była wielokrotnie aktualizowana [@kalinowski2016]. Obecna
-definicja, zaproponowana w artykule *„Zespół metaboliczny — nowa
-definicja i postępowanie w praktyce”* [@dobrowolski], opracowanym przez
-polskie towarzystwa medyczne, brzmi następująco:
+Zespół metaboliczny jest istotnym wyzwaniem dla zdrowia publicznego i epidemiologii. Został po raz pierwszy opisany w 1981 roku, a jego definicja była wielokrotnie aktualizowana [@kalinowski2016]. Obecna definicja, zaproponowana w artykule *„Zespół metaboliczny — nowa definicja i postępowanie w praktyce”* [@dobrowolski], opracowanym przez polskie towarzystwa medyczne, brzmi następująco:
 
 *definicja*:
 
-:   Rozpoznanie zespołu metabolicznego wymaga obecności otyłości
-    (najczęściej brzusznej) oraz co najmniej dwóch z trzech poniższych
-    czynników: podwyższonego ciśnienia tętniczego, nieprawidłowego
-    metabolizmu glukozy, podwyższonego stężenia cholesterolu frakcji
-    nie-HDL (aterogenna dyslipidemia).
+:   Rozpoznanie zespołu metabolicznego wymaga obecności otyłości (najczęściej brzusznej) oraz co najmniej dwóch z trzech poniższych czynników: podwyższonego ciśnienia tętniczego, nieprawidłowego metabolizmu glukozy, podwyższonego stężenia cholesterolu frakcji nie-HDL (aterogenna dyslipidemia).
 
-  Nowa definicja jest uproszczoną wersją wcześniejszych, które
-obejmowały szerszy zakres kryteriów diagnostycznych, m.in. występowanie
-cukrzycy typu drugiego, insulinooporności, mikroalbuminurii, czy
-podwyższonego stężenia trójglicerydów w surowicy [@kalinowski2016].
-Niezależnie od przyjętej definicji, niezmienne pozostaje stanowisko, że
-współwystępowanie wymienionych zaburzeń metabolicznych znacząco zwiększa
-ryzyko rozwoju chorób sercowo-naczyniowych -- w stopniu większym, niż
-każdy z tych czynników rozpatrywany oddzielnie.
+  Nowa definicja jest uproszczoną wersją wcześniejszych, które obejmowały szerszy zakres kryteriów diagnostycznych, m.in. występowanie cukrzycy typu drugiego, insulinooporności, mikroalbuminurii, czy podwyższonego stężenia trójglicerydów w surowicy [@kalinowski2016]. Niezależnie od przyjętej definicji, niezmienne pozostaje stanowisko, że współwystępowanie wymienionych zaburzeń metabolicznych znacząco zwiększa ryzyko rozwoju chorób sercowo-naczyniowych -- w stopniu większym, niż każdy z tych czynników rozpatrywany oddzielnie.
 
-  Obecnie mówi się o zespole metabolicznym jako o epidemii o zasięgu
-globalnym [@saklayen2018]. Główne przyczyny jego rosnącej częstości to
-upowszechnienie siedzącego trybu życia oraz nadmierne spożycie
-wysokokalorycznych pokarmów, co przyczynia się do wzrostu otyłości --
-jednego z kluczowych komponentów tego zespołu. W Stanach Zjednoczonych
-rozpowszechnienie zespołu metabolicznego w populacji dorosłych szacuje
-się na około 22%, przy czym w grupie pacjentów z cukrzycą typu 2 odsetek
-ten przekracza 80%. Co istotne, zespół coraz częściej diagnozowany jest
-również u dzieci i młodzieży, co stanowi poważne wyzwanie dla systemów
-ochrony zdrowia. Zjawisko to nie ogranicza się jedynie do krajów wysoko
-rozwiniętych – regiony takie jak Azja, Ameryka Łacińska czy Bliski
-Wschód odnotowują znaczący wzrost zachorowań, potwierdzając uniwersalny
-charakter tego zagrożenia zdrowotnego [@saklayen2018].
+  Obecnie mówi się o zespole metabolicznym jako o epidemii o zasięgu globalnym [@saklayen2018]. Główne przyczyny jego rosnącej częstości to upowszechnienie siedzącego trybu życia oraz nadmierne spożycie wysokokalorycznych pokarmów, co przyczynia się do wzrostu otyłości -- jednego z kluczowych komponentów tego zespołu. W Stanach Zjednoczonych rozpowszechnienie zespołu metabolicznego w populacji dorosłych szacuje się na około 22%, przy czym w grupie pacjentów z cukrzycą typu 2 odsetek ten przekracza 80%. Co istotne, zespół coraz częściej diagnozowany jest również u dzieci i młodzieży, co stanowi poważne wyzwanie dla systemów ochrony zdrowia. Zjawisko to nie ogranicza się jedynie do krajów wysoko rozwiniętych – regiony takie jak Azja, Ameryka Łacińska czy Bliski Wschód odnotowują znaczący wzrost zachorowań, potwierdzając uniwersalny charakter tego zagrożenia zdrowotnego [@saklayen2018].
 
-  Z tego względu kluczowe jest zrozumienie mechanizmów leżących u
-podstaw zespołu metabolicznego oraz doskonalenie metod jego wczesnej
-diagnostyki, co może ułatwić skuteczną prewencję powikłań, w tym chorób
-sercowo-naczyniowych. Ze względu na rozbieżności w definicjach zespołu
-metabolicznego [@kalinowski2016], opracowanie jednolitego narzędzia
-analitycznego, które umożliwi wczesną, trafną i zautomatyzowaną
-identyfikację pacjentów zagrożonych jego wystąpieniem na podstawie
-danych klinicznych, jest wyjątkowo trudne. Celem niniejszego projektu
-jest stworzenie modelu predykcyjnego, który, bazując na danych
-klinicznych pacjentów, umożliwi identyfikację osób spełniających
-kryteria rozpoznania zespołu metabolicznego.
+  Z tego względu kluczowe jest zrozumienie mechanizmów leżących u podstaw zespołu metabolicznego oraz doskonalenie metod jego wczesnej diagnostyki, co może ułatwić skuteczną prewencję powikłań, w tym chorób sercowo-naczyniowych. Ze względu na rozbieżności w definicjach zespołu metabolicznego [@kalinowski2016], opracowanie jednolitego narzędzia analitycznego, które umożliwi wczesną, trafną i zautomatyzowaną identyfikację pacjentów zagrożonych jego wystąpieniem na podstawie danych klinicznych, jest wyjątkowo trudne. Celem niniejszego projektu jest stworzenie modelu predykcyjnego, który, bazując na danych klinicznych pacjentów, umożliwi identyfikację osób spełniających kryteria rozpoznania zespołu metabolicznego.
 
 \bigskip
 
   **Podział prac w zespole** był następujący:
 
-```{=tex}
 \begin{tightlist}
 1.  Jaskuła Z. -- Przygotowanie i analiza zbioru danych
 
-2.  Kozakiewicz K. -- Interpertacja współczynników VIF, interpretacja współczynników modeli, porównanie dobroci dopasowania modeli logitowych
+2.  Kozakiewicz K. -- Interpertacja modeli
 
-3.  Miklaszewska N. --.
+3.  Miklaszewska N. -- Budowa modeli.
 \end{tightlist}
-```
+
 \newpage
 
 # Przygotowanie i analiza zbioru danych
@@ -106,16 +64,7 @@ library(pscl) #pseudo-R2 funkcja pR2()
 paleta <- c("#F0F0F0", "#A0DCFA", "#508FE5", "#0041D0", "#052D73")
 ```
 
-W projekcie wykorzystano dane pochodzące z publicznie dostępnego
-[[zbioru]{.underline}](https://www.kaggle.com/datasets/antimoni/metabolic-syndrome/data)
-opublikowanego na platformie Kaggle. Zawiera on zarówno informacje
-demograficzne, jak i kliniczne dotyczące pacjentów, sklasyfikowanych ze
-względu na obecność lub brak zespołu metabolicznego. Zbiór zawiera numer
-identyfikacyjny pacjentów, 9 zmiennych ilościowych oraz 5 zmiennych
-jakościowych. Umożliwia analizę zależności pomiędzy cechami jednostki a
-występowaniem schorzenia, co czyni go odpowiednim do zastosowań
-predykcyjnych. Szczegółowy opis zmiennych przedstawiono w tabeli
-poniżej:
+W projekcie wykorzystano dane pochodzące z publicznie dostępnego [[zbioru]{.underline}](https://www.kaggle.com/datasets/antimoni/metabolic-syndrome/data) opublikowanego na platformie Kaggle. Zawiera on zarówno informacje demograficzne, jak i kliniczne dotyczące pacjentów, sklasyfikowanych ze względu na obecność lub brak zespołu metabolicznego. Zbiór zawiera numer identyfikacyjny pacjentów, 9 zmiennych ilościowych oraz 5 zmiennych jakościowych. Umożliwia analizę zależności pomiędzy cechami jednostki a występowaniem schorzenia, co czyni go odpowiednim do zastosowań predykcyjnych. Szczegółowy opis zmiennych przedstawiono w tabeli poniżej:
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 tabela <- data.frame(
@@ -180,74 +129,25 @@ st(dane_ms,
 
 ## Statystyki opisowe
 
-Zmiennymi demograficznymi uwzględnionymi w zbiorze są: wiek (`Age`),
-płeć (`Sex`), stan cywilny (`Marital`), dochód (`Income`) oraz rasa
-(`Race`). Część kliniczna obejmuje pomiary antropometryczne i wyniki
-badań laboratoryjnych istotnych w kontekście diagnostyki zespołu
-metabolicznego.
+Zmiennymi demograficznymi uwzględnionymi w zbiorze są: wiek (`Age`), płeć (`Sex`), stan cywilny (`Marital`), dochód (`Income`) oraz rasa (`Race`). Część kliniczna obejmuje pomiary antropometryczne i wyniki badań laboratoryjnych istotnych w kontekście diagnostyki zespołu metabolicznego.
 
-  Zbiór danych obejmuje 2401 osób (1211 kobiet i 1190 mężczyzn) w wieku
-od 20 do 80 lat (średnia 48,69 lat). Większość badanych jest w średnim
-wieku. Wśród uczestników dominują osoby zamężne/żonate (ok. 50%), a
-rozkład dochodów jest zróżnicowany – od 300 do 9000 jednostek (średnio
-4005). Dane obejmują też informacje o przynależności rasowej; największe
-grupy stanowią osoby białe (933 osób, co stanowi ok. 39% badanych) i
-czarnoskóre (548, ok. 23%).
+  Zbiór danych obejmuje 2401 osób (1211 kobiet i 1190 mężczyzn) w wieku od 20 do 80 lat (średnia 48,69 lat). Większość badanych jest w średnim wieku. Wśród uczestników dominują osoby zamężne/żonate (ok. 50%), a rozkład dochodów jest zróżnicowany – od 300 do 9000 jednostek (średnio 4005). Dane obejmują też informacje o przynależności rasowej; największe grupy stanowią osoby białe (933 osób, co stanowi ok. 39% badanych) i czarnoskóre (548, ok. 23%).
 
-  Średni obwód talii wynosi 98,31 cm, przy czym wartości skrajne sięgają
-od 56,2 cm do 176 cm. Średnia wartość BMI to 28,7, co klasyfikuje
-przeciętnego badanego jako osobę z nadwagą [@BMI]. 25% badanych ma BMI
-powyżej 30, co jest klasyfikowane jako otyłość. W zestawie są zarówno
-osoby z niedowagą (BMI \< 17), jak i ze skrajną otyłością (BMI \> 40).
+  Średni obwód talii wynosi 98,31 cm, przy czym wartości skrajne sięgają od 56,2 cm do 176 cm. Średnia wartość BMI to 28,7, co klasyfikuje przeciętnego badanego jako osobę z nadwagą [@BMI]. 25% badanych ma BMI powyżej 30, co jest klasyfikowane jako otyłość. W zestawie są zarówno osoby z niedowagą (BMI \< 17), jak i ze skrajną otyłością (BMI \> 40).
 
-  Albuminuria to zjawisko, gdy organizm wydala z organizmu białka wraz z
-moczem. Jest to naturalne, jednak wysokie stężenie albumin w moczu może
-być objawem nieprawidłowości w pracy nerek, spowodowanej np. cukrzycą
-lub nieskutecznie leczonym nadciśnieniem tętniczym [@albuminuria]. W
-zbiorze stężenie białek jest indykatorem o wartościach: 0 - normalne
-stężenie albumin, 1 - podwyższony poziom, 2 - bardzo wysoki poziom
-albumin (białkomocz). Osoby z podwyższonym poziomem stanowią mniejszość.
-W przypadku zmiennej `UrAlbCr` opisującej stosunek albuminy do
-kreatyniny widać, że posiada ona bardzo duży przedział wartości. Mediana
-wynosi 7,07, ale występują wartości skrajnie wysokie (maksymalnie 5928),
-wskazując na obecność odstających obserwacji.
+  Albuminuria to zjawisko, gdy organizm wydala z organizmu białka wraz z moczem. Jest to naturalne, jednak wysokie stężenie albumin w moczu może być objawem nieprawidłowości w pracy nerek, spowodowanej np. cukrzycą lub nieskutecznie leczonym nadciśnieniem tętniczym [@albuminuria]. W zbiorze stężenie białek jest indykatorem o wartościach: 0 - normalne stężenie albumin, 1 - podwyższony poziom, 2 - bardzo wysoki poziom albumin (białkomocz). Osoby z podwyższonym poziomem stanowią mniejszość. W przypadku zmiennej `UrAlbCr` opisującej stosunek albuminy do kreatyniny widać, że posiada ona bardzo duży przedział wartości. Mediana wynosi 7,07, ale występują wartości skrajnie wysokie (maksymalnie 5928), wskazując na obecność odstających obserwacji.
 
-  Poziom kwasu moczowego (`UricAcid`) we krwi wynosi średnio 5,49 mg/dl;
-około 75% badanych ma wyniki mieszczące się w normie, która wynosi
-między 3 a 7 mg/dl, w zależności od płci. Podwyższone ilości kwasu
-moczowego mogą być skutkiem niewłaściwej diety, otyłości lub cukrzycy.
-Wśród potencjalnych przyczyn wymieniany jest również zespół metaboliczny
-[@kwas_moczowy].
+  Poziom kwasu moczowego (`UricAcid`) we krwi wynosi średnio 5,49 mg/dl; około 75% badanych ma wyniki mieszczące się w normie, która wynosi między 3 a 7 mg/dl, w zależności od płci. Podwyższone ilości kwasu moczowego mogą być skutkiem niewłaściwej diety, otyłości lub cukrzycy. Wśród potencjalnych przyczyn wymieniany jest również zespół metaboliczny [@kwas_moczowy].
 
-  Poziom glukozy we krwi (`BloodGlucose`) również pokazuje dużą
-zmienność – od bardzo niskich do bardzo wysokich wartości – przy
-medianie 99 mg/dl, co jest wartością prawidłową.
+  Poziom glukozy we krwi (`BloodGlucose`) również pokazuje dużą zmienność – od bardzo niskich do bardzo wysokich wartości – przy medianie 99 mg/dl, co jest wartością prawidłową.
 
-  Średni poziom "dobrego" cholesterolu (`HDL`) wynosi 53,37 mg/dl. Około
-połowa uczestników ma nieprawidłowy poziom HDL w stosunku do zalecanych
-norm (zależnie od płci granica nieprawidłowej ilości HDL wynosi między
-40-50 mg/dl [@HDL]). Średnie stężenie trójglicerydów (`Triglycerides`)
-wynosi 128,1 mg/dl, przy czym najwyższe wartości (1562 mg/dl) są
-znacznie powyżej poziomu bezpiecznego (150-199 mg/dl) [@trojglicerydy].
+  Średni poziom "dobrego" cholesterolu (`HDL`) wynosi 53,37 mg/dl. Około połowa uczestników ma nieprawidłowy poziom HDL w stosunku do zalecanych norm (zależnie od płci granica nieprawidłowej ilości HDL wynosi między 40-50 mg/dl [@HDL]). Średnie stężenie trójglicerydów (`Triglycerides`) wynosi 128,1 mg/dl, przy czym najwyższe wartości (1562 mg/dl) są znacznie powyżej poziomu bezpiecznego (150-199 mg/dl) [@trojglicerydy].
 
-  Zmienna `MetabolicSyndrome` informuje, że około 34,24% badanych ma już
-rozpoznany zespół metaboliczny. Dane medyczne zawarte w zbiorze odnoszą
-się do wyników badań oraz pomiarów, które w przeszłości były uznawane za
-istotne indykatory zespołu metabolicznego, jak wspomniano powyżej. W
-ramach niniejszego projektu zostanie przeanalizowane, czy na podstawie
-tych danych możliwe jest skuteczne przewidywanie występowania zespołu
-metabolicznego u pacjentów.
+  Zmienna `MetabolicSyndrome` informuje, że około 34,24% badanych ma już rozpoznany zespół metaboliczny. Dane medyczne zawarte w zbiorze odnoszą się do wyników badań oraz pomiarów, które w przeszłości były uznawane za istotne indykatory zespołu metabolicznego, jak wspomniano powyżej. W ramach niniejszego projektu zostanie przeanalizowane, czy na podstawie tych danych możliwe jest skuteczne przewidywanie występowania zespołu metabolicznego u pacjentów.
 
 ## Analiza braków
 
-W zbiorze danych występują braki, które należy zbadać, i w miarę
-możliwości zniwelować. Z analizy statystyk opisowych wynika, że zmienna
-`Marital` zawiera 208 obserwacji oznaczonych jako "...". Ponadto zmienne
-`Income`, `WaistCirc` oraz `BMI` również zawierają braki, co zostało
-uwidocznione w tabeli statystyk zbiorczych, w kolumnie *N*,
-przedstawiającej liczbę obserwacji dla każdej z tych zmiennych.
-Sprawdzono, ile braków występuje dla każdej zmiennej oraz jaki stanowią
-one procent wszystkich obserwacji.
+W zbiorze danych występują braki, które należy zbadać, i w miarę możliwości zniwelować. Z analizy statystyk opisowych wynika, że zmienna `Marital` zawiera 208 obserwacji oznaczonych jako "...". Ponadto zmienne `Income`, `WaistCirc` oraz `BMI` również zawierają braki, co zostało uwidocznione w tabeli statystyk zbiorczych, w kolumnie *N*, przedstawiającej liczbę obserwacji dla każdej z tych zmiennych. Sprawdzono, ile braków występuje dla każdej zmiennej oraz jaki stanowią one procent wszystkich obserwacji.
 
 ```{r message=FALSE, warning=FALSE, include=FALSE}
 # zamiana pustych komórek na NA dla zmiennej `Marital`
@@ -269,18 +169,12 @@ kbl(miss_var_summary(dane_ms[c("Marital", "Income", "WaistCirc", "BMI")]),
            general_title = "") 
 ```
 
-  Najwięcej brakujących danych występuje w zmiennej `Marital` --
-stanowią one 8,66% wszystkich obserwacji. Jest to odsetek przekraczający
-powszechnie akceptowany próg 5% braków. W pozostałych przypadkach braki
-stanowią mniej niż 5% wszystkich obserwacji. Dodatkowo, przeprowadzono
-analizę współwystępowania braków, uwzględniając zależności między
-brakującymi danymi w różnych zmiennych.
+  Najwięcej brakujących danych występuje w zmiennej `Marital` -- stanowią one 8,66% wszystkich obserwacji. Jest to odsetek przekraczający powszechnie akceptowany próg 5% braków. W pozostałych przypadkach braki stanowią mniej niż 5% wszystkich obserwacji. Dodatkowo, przeprowadzono analizę współwystępowania braków, uwzględniając zależności między brakującymi danymi w różnych zmiennych.
 
-```{=tex}
 \begin{center}
 Wykres 1: Rozkład braków oraz ich współwystępowania
 \end{center}
-```
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 # tworzenie wykresu braku danych
 gg_miss_upset(dane_ms[c("Marital", "Income", "WaistCirc", "BMI")], 
@@ -293,35 +187,13 @@ gg_miss_upset(dane_ms[c("Marital", "Income", "WaistCirc", "BMI")],
 
 Źródło: opracowanie własne na podstawie zbioru danych \newline
 
-  Najczęściej występującymi brakami danych są pojedyncze braki w jednej
-z trzech zmiennych: stanie cywilnym, dochodach lub obwodzie talii. W
-zbiorze danych odnotowano 20 przypadków brakujących wartości
-jednocześnie dla zmiennych `BMI` i `WaistCirc`, a także 14 przypadków
-braków dotyczących jednocześnie zmiennych `Income` i `Marital`.
+  Najczęściej występującymi brakami danych są pojedyncze braki w jednej z trzech zmiennych: stanie cywilnym, dochodach lub obwodzie talii. W zbiorze danych odnotowano 20 przypadków brakujących wartości jednocześnie dla zmiennych `BMI` i `WaistCirc`, a także 14 przypadków braków dotyczących jednocześnie zmiennych `Income` i `Marital`.
 
-  W celu uzupełnienia brakujących danych zastosowano metodę imputacji
-wielokrotnej z wykorzystaniem procedury MICE. Metoda ta polega na
-wygenerowaniu kilku uzupełnionych wersji zbioru danych, w których
-wartości brakujące są zastępowane prognozowanymi wartościami opartymi na
-pozostałych zmiennych. Wygenerowanie kilku różnych zestawów pozwala na
-uwzględnienie niepewności związanej z brakami [@marszalek2023].
+  W celu uzupełnienia brakujących danych zastosowano metodę imputacji wielokrotnej z wykorzystaniem procedury MICE. Metoda ta polega na wygenerowaniu kilku uzupełnionych wersji zbioru danych, w których wartości brakujące są zastępowane prognozowanymi wartościami opartymi na pozostałych zmiennych. Wygenerowanie kilku różnych zestawów pozwala na uwzględnienie niepewności związanej z brakami [@marszalek2023].
 
-  Dla zmiennych ilościowych zastosowano technikę *PMM* (ang. *Predictive
-Mean Matching*). Polega ona na znalezieniu obserwacji z brakującą
-wartością, a następnie dopasowaniu jej do jednej z obserwacji
-nieposiadającej braków, która wykazuje najbardziej zbliżone wartości
-innych zmiennych objaśniających. Wartość brakująca zostaje zastąpiona
-wartością z dopasowanego rekordu, co pozwala zachować zgodność z
-rozkładem empirycznym zmiennej. Dla zmiennej jakościowej `Marital` użyto
-techniki *polyreg* (ang. *Polytomous logistic regression*), odpowiedniej
-dla zmiennych kategorycznych, nieuporządkowanych, o więcej niż dwóch
-wariantach [@mice].
+  Dla zmiennych ilościowych zastosowano technikę *PMM* (ang. *Predictive Mean Matching*). Polega ona na znalezieniu obserwacji z brakującą wartością, a następnie dopasowaniu jej do jednej z obserwacji nieposiadającej braków, która wykazuje najbardziej zbliżone wartości innych zmiennych objaśniających. Wartość brakująca zostaje zastąpiona wartością z dopasowanego rekordu, co pozwala zachować zgodność z rozkładem empirycznym zmiennej. Dla zmiennej jakościowej `Marital` użyto techniki *polyreg* (ang. *Polytomous logistic regression*), odpowiedniej dla zmiennych kategorycznych, nieuporządkowanych, o więcej niż dwóch wariantach [@mice].
 
-  W procesie tworzenia zestawów imputowanych danych uwzględniono zmienną
-`Age`, która nie zawierała braków, aby poprawić predykcje brakujących
-wartości. Następnie porównano rozkłady zestawów imputowanych danych na
-wykresach oraz porównano statystyki zestawów: ich średnie, mediany i
-odchylenia standardowe.
+  W procesie tworzenia zestawów imputowanych danych uwzględniono zmienną `Age`, która nie zawierała braków, aby poprawić predykcje brakujących wartości. Następnie porównano rozkłady zestawów imputowanych danych na wykresach oraz porównano statystyki zestawów: ich średnie, mediany i odchylenia standardowe.
 
 ```{r include=FALSE, results='hide'}
 # wybór zmiennych do imputacji
@@ -334,11 +206,10 @@ imp_1 <- mice(zm_braki,
               seed = 123)
 ```
 
-```{=tex}
 \begin{center}
 Wykres 2: Rozkłady zestawów z imputowanymi danymi
 \end{center}
-```
+
 ```{r echo=FALSE}
 # rozkłady zm. po imputacji
 stripplot(imp_1, col = c(paleta[1], paleta[4]), pch = c(1, 20))[-1]
@@ -380,12 +251,7 @@ kbl(tabela_finalna,
            general_title = "")
 ```
 
-  Na podstawie analizy statystyk imputowanych zestawów danych
-stwierdzono, że zestaw 2 najtrafniej odwzorowuje rozkłady zmiennych
-oryginalnych. W przypadku dochodu zestaw ten ma statystyki nieco
-bardziej odchylone od statystyk oryginalnych danych, ale zbliżone
-wartości średnich, median oraz odchyleń standardowych dla obwodu w talii
-oraz BMI uzasadniają wybór tego zestawu do dalszych działań.
+  Na podstawie analizy statystyk imputowanych zestawów danych stwierdzono, że zestaw 2 najtrafniej odwzorowuje rozkłady zmiennych oryginalnych. W przypadku dochodu zestaw ten ma statystyki nieco bardziej odchylone od statystyk oryginalnych danych, ale zbliżone wartości średnich, median oraz odchyleń standardowych dla obwodu w talii oraz BMI uzasadniają wybór tego zestawu do dalszych działań.
 
 ```{r include=FALSE}
 # wybór kompletnego zestawu danych
@@ -397,19 +263,12 @@ dane_ms[c("Age", "Marital", "Income", "WaistCirc", "BMI")] <- imputed
 
 ## Wizualizacje rozkładów
 
-W celu lepszego zrozumienia struktury danych oraz identyfikacji
-potencjalnych różnic pomiędzy grupami pacjentów z rozpoznanym zespołem
-metabolicznym i bez niego, przeprowadzono wizualizację rozkładów
-zmiennych ilościowych. Dla każdej z tych zmiennych utworzono histogramy,
-które umożliwiają ocenę kształtu rozkładu oraz porównanie wartości
-pomiędzy dwiema grupami zdefiniowanymi przez zmienną
-`MetabolicSyndrome`. \newpage
+W celu lepszego zrozumienia struktury danych oraz identyfikacji potencjalnych różnic pomiędzy grupami pacjentów z rozpoznanym zespołem metabolicznym i bez niego, przeprowadzono wizualizację rozkładów zmiennych ilościowych. Dla każdej z tych zmiennych utworzono histogramy, które umożliwiają ocenę kształtu rozkładu oraz porównanie wartości pomiędzy dwiema grupami zdefiniowanymi przez zmienną `MetabolicSyndrome`. \newpage
 
-```{=tex}
 \begin{center}
 Wykres 3: Rozkłady zmiennych ilościowych
 \end{center}
-```
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 ilosciowe <- c("Age", "Income", "WaistCirc", "BMI", "UrAlbCr",
                "UricAcid", "BloodGlucose", "HDL", "Triglycerides")
@@ -437,23 +296,12 @@ grid.arrange(grobs = wykresy, ncol = 3)
 
 Źródło: opracowanie własne na podstawie zbioru danych \newline
 
-  Histogramy zmiennych `BMI`, `UrAlbCr`, `BloodGlucose`, `HDL` oraz
-`Triglycerides` pokazują, że zmienne te zawierają wartości odstające,
-które mogą negatywnie wpływać na predykcje modelu. Zmienna `WaistCirc`
-również nie ma rozkładu normalnego, jednak jej zbiór wartości jest
-najbardziej "spójny" i nie zawiera punktów odstających o bardzo dużych
-wartościach. Rozkład wieku wskazuje, że w zbiorze znajduje się mniej
-więcej po tyle samo pacjentów (między 300 a 400 osób) w każdej grupie
-wiekowej, z wyjątkiem osób w wieku 20 lat, których jest kilkukrotnie
-mniej. W przypadku stosunku albumin do keratyniny w moczu niezbędne jest
-zlogarytmowanie zmiennej, ponieważ wartości odstające uniemożliwiają
-dokładną analizę rozkładu wartości.
+  Histogramy zmiennych `BMI`, `UrAlbCr`, `BloodGlucose`, `HDL` oraz `Triglycerides` pokazują, że zmienne te zawierają wartości odstające, które mogą negatywnie wpływać na predykcje modelu. Zmienna `WaistCirc` również nie ma rozkładu normalnego, jednak jej zbiór wartości jest najbardziej "spójny" i nie zawiera punktów odstających o bardzo dużych wartościach. Rozkład wieku wskazuje, że w zbiorze znajduje się mniej więcej po tyle samo pacjentów (między 300 a 400 osób) w każdej grupie wiekowej, z wyjątkiem osób w wieku 20 lat, których jest kilkukrotnie mniej. W przypadku stosunku albumin do keratyniny w moczu niezbędne jest zlogarytmowanie zmiennej, ponieważ wartości odstające uniemożliwiają dokładną analizę rozkładu wartości.
 
-```{=tex}
 \begin{center}
 Wykres 4: Rozkłady zmiennych ilościowych z uwzględnieniem informacji o posiadaniu lub nieposiadaniu zespołu metabolicznego
 \end{center}
-```
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=8, fig.height=11}
 # transformacja logarytmiczna zmiennej `UrAlbCr`
 dane_ms$UrAlbCr <- log2(dane_ms$UrAlbCr)
@@ -488,38 +336,16 @@ grid.arrange(grobs = plots[1:6], ncol = 2)
 grid.arrange(grobs = plots[7:9], ncol = 2)
 ```
 
-  Po stworzeniu oddzielnych wykresów częstości dla osób z zespołem
-metabolicznym oraz bez niego, zauważalna jest znaczna różnica w
-rozkładach niektórych zmiennych. Analizując histogram wieku osób
-zdrowych, można stwierdzić, że większość z nich to osoby poniżej 45.
-roku życia, a rozkład wieku w tej grupie przyjmuje charakter
-prawoskośny. Z kolei histogram osób z zespołem metabolicznym wykazuje
-bardziej wyrównany rozkład, z widoczną koncentracją przypadków w
-starszych grupach wiekowych, co może sugerować zwiększone ryzyko
-wystąpienia zespołu metabolicznego w późniejszym wieku. W przypadku
-zmiennych takich jak obwód talii oraz wskaźnik BMI, również dostrzega
-się przesunięcie wykresu częstości w prawo dla osób chorych. Podobny
-trend występuje w przypadku poziomu kwasu moczowego we krwi oraz
-glukozy. Natomiast rozkład zmiennej `HDL` wśród osób z zespołem
-metabolicznym charakteryzuje się niższymi wartościami HDL w porównaniu
-do osób zdrowych. Z kolei dochody nie wykazują istotnych różnic pomiędzy
-obiema grupami. Histogram zmiennej `UrAlbCr` po zastosowaniu
-transformacji logarytmicznej jest łatwiejszy do interpretacji. Z analizy
-wynika, że osoby chore częściej wykazują wyższe poziomy tej zmiennej w
-porównaniu do osób zdrowych.
+  Po stworzeniu oddzielnych wykresów częstości dla osób z zespołem metabolicznym oraz bez niego, zauważalna jest znaczna różnica w rozkładach niektórych zmiennych. Analizując histogram wieku osób zdrowych, można stwierdzić, że większość z nich to osoby poniżej 45. roku życia, a rozkład wieku w tej grupie przyjmuje charakter prawoskośny. Z kolei histogram osób z zespołem metabolicznym wykazuje bardziej wyrównany rozkład, z widoczną koncentracją przypadków w starszych grupach wiekowych, co może sugerować zwiększone ryzyko wystąpienia zespołu metabolicznego w późniejszym wieku. W przypadku zmiennych takich jak obwód talii oraz wskaźnik BMI, również dostrzega się przesunięcie wykresu częstości w prawo dla osób chorych. Podobny trend występuje w przypadku poziomu kwasu moczowego we krwi oraz glukozy. Natomiast rozkład zmiennej `HDL` wśród osób z zespołem metabolicznym charakteryzuje się niższymi wartościami HDL w porównaniu do osób zdrowych. Z kolei dochody nie wykazują istotnych różnic pomiędzy obiema grupami. Histogram zmiennej `UrAlbCr` po zastosowaniu transformacji logarytmicznej jest łatwiejszy do interpretacji. Z analizy wynika, że osoby chore częściej wykazują wyższe poziomy tej zmiennej w porównaniu do osób zdrowych.
 
 ## Analiza korelacji i zależności między zmiennymi
 
-Analizę korelacji podzielono na trzy części: analizę korelacji między
-zmiennymi ilościowymi (z wykorzystaniem *korelacji Pearsona*),
-jakościowymi (*współczynnik kontyngencji V Cramera*) oraz między
-zmiennymi ilościowymi a jakościowymi.
+Analizę korelacji podzielono na trzy części: analizę korelacji między zmiennymi ilościowymi (z wykorzystaniem *korelacji Pearsona*), jakościowymi (*współczynnik kontyngencji V Cramera*) oraz między zmiennymi ilościowymi a jakościowymi.
 
-```{=tex}
 \begin{center}
 Wykres 5: Korelacje między zmiennymi ilościowymi
 \end{center}
-```
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 model.matrix(~0+., data = dane_ms %>% select_if(is.numeric)) %>% 
   cor(use = "pairwise.complete.obs") %>% 
@@ -531,11 +357,7 @@ model.matrix(~0+., data = dane_ms %>% select_if(is.numeric)) %>%
              ggtheme = theme_classic)
 ```
 
-  Między analizowanymi zmiennymi ilościowymi zaobserwowano słabe
-korelacje, z wyjątkiem pary `BMI` i `WaistCirc`. Ze względu na możliwość
-wystąpienia współliniowości, obwód w talii został wykluczony z dalszych
-analiz. Uznano, że wskaźnik `BMI` niesie więcej informacji, ponieważ
-uwzględnia zarówno masę ciała, jak i wzrost pacjenta.
+  Między analizowanymi zmiennymi ilościowymi zaobserwowano słabe korelacje, z wyjątkiem pary `BMI` i `WaistCirc`. Ze względu na możliwość wystąpienia współliniowości, obwód w talii został wykluczony z dalszych analiz. Uznano, że wskaźnik `BMI` niesie więcej informacji, ponieważ uwzględnia zarówno masę ciała, jak i wzrost pacjenta.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
 jakosciowe <- c("Sex", "Marital", "Race", "Albuminuria")
@@ -557,15 +379,9 @@ kbl(kor.cramer,
     latex_options = c("hold_position"))
 ```
 
-  Dla par zmiennych jakościowych obliczono współczynnik kontyngencji V
-Craméra. Przyjęto, że korelacja jest silna, gdy $V > 0{,}5$. W
-analizowanym zbiorze danych nie stwierdzono wartości przekraczających
-przyjęty próg.
+  Dla par zmiennych jakościowych obliczono współczynnik kontyngencji V Craméra. Przyjęto, że korelacja jest silna, gdy $V > 0{,}5$. W analizowanym zbiorze danych nie stwierdzono wartości przekraczających przyjęty próg.
 
-  **Współczynnik korelacji punktowo-dwuseryjnej** pomiędzy zmienną
-ciągłą $X$ a zmienną dychotomiczną jest obliczany ze wzoru:
-$$r= \frac{(\overline{X} - \overline{X_{0}})\sqrt{\pi \cdot (1- \pi)}}{S_x}$$
-Jest on równoważny wsp. korelacji Pearsona.
+  **Współczynnik korelacji punktowo-dwuseryjnej** pomiędzy zmienną ciągłą $X$ a zmienną dychotomiczną jest obliczany ze wzoru: $$r= \frac{(\overline{X} - \overline{X_{0}})\sqrt{\pi \cdot (1- \pi)}}{S_x}$$ Jest on równoważny wsp. korelacji Pearsona.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 dane_kor <- dane_ms %>%
@@ -582,26 +398,13 @@ kbl(kor.pd,
     latex_options = c("hold_position"))
 ```
 
-  Między zmiennymi nie występują silne korelacje, z wyjątkiem jednej
-pary: `UrAlbCr` i `Albuminuria`. Obydwie zmienne związane są ze
-stężeniem albumin, jednak pierwsza z nich jest zmienną ilościową. Z tego
-powodu uznana została za zmienną zawierającą więcej informacji i tym
-samym tylko ona z tej pary uwzględniona zostanie w dalszych analizach.
-(jakieś lepsze wytłumacznie ale nwm ...?)
+  Między zmiennymi nie występują silne korelacje, z wyjątkiem jednej pary: `UrAlbCr` i `Albuminuria`. Obydwie zmienne związane są ze stężeniem albumin, jednak pierwsza z nich jest zmienną ilościową. Z tego powodu uznana została za zmienną zawierającą więcej informacji i tym samym tylko ona z tej pary uwzględniona zostanie w dalszych analizach. (jakieś lepsze wytłumacznie ale nwm ...?)
 
 \newpage
 
 # Budowa modeli
 
-W celu otrzymania modelu z jak najlepszą zdolnością predykcyjną, przed
-przystąpieniem do jego budowy, oryginalne dane podzielone zostały na
-zbiór uczący i zbiór testowy. Modele budowane będą na zbiorze uczącym,
-który stanowi 70% całego zbioru danych, natomiast testowane będą na
-zbiorze testowym, który stanowi 30% oryginalnego zbioru. Taki podział
-pozwoli uniknąć przeuczenia modelu i możliwe będzie sprawdzenie jak
-radzi on sobie z nowymi danymi. W tabeli poniżej znajdują się proporcje
-wariantów zmiennej zależnej `MetabolicSyndrome` w pełnych danych i w
-danych uczących i testowych.
+W celu otrzymania modelu z jak najlepszą zdolnością predykcyjną, przed przystąpieniem do jego budowy, oryginalne dane podzielone zostały na zbiór uczący i zbiór testowy. Modele budowane będą na zbiorze uczącym, który stanowi 70% całego zbioru danych, natomiast testowane będą na zbiorze testowym, który stanowi 30% oryginalnego zbioru. Taki podział pozwoli uniknąć przeuczenia modelu i możliwe będzie sprawdzenie jak radzi on sobie z nowymi danymi. W tabeli poniżej znajdują się proporcje wariantów zmiennej zależnej `MetabolicSyndrome` w pełnych danych i w danych uczących i testowych. Proporcje "odpowiedzi" zostały zachowane, zatem obydwa podzbiory dobrze reprezentują oryginalny zbiór danych.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 set.seed(123)
@@ -625,280 +428,108 @@ kbl(round(tabela, 3),
     caption = "Proporcje w zbiorach danych",
     booktabs = TRUE) %>%
   kable_styling(
-    latex_options = c("hold_position")) %>%
-  column_spec(c(1:2, 2:3), width = "4cm") %>% 
+    latex_options = c("hold_position", "striped")) %>%
+  column_spec(c(1:2, 2:3), width = "3cm") %>% 
   footnote(general = "Źródło: opracowanie własne na podstawie zbioru danych", 
            general_title = "")
 ```
 
-  Jak widać przy podziale na dwa zbiory, proporcje "odpowiedzi" zostały
-zachowane, zatem obydwa podzbiory dobrze reprezentują oryginalny zbiór
-danych.
-
-  (...?) Jak zostało to określone wcześniej, zmienną objaśnianą jest
-zmienna dychotomiczna `MetabolicSyndrome`. Zmiennymi objaśniającymi będą
-natomiast wszystkie wymienione w poprzednim rodziale zmienne z wyjątkiem
-dwóch. Przy analizie korelacji zmienne `BMI` i `WaistCirc` oraz
-`Albuminuria` i `UrAlbCr` wykazały między sobą zbyt dużą korelację, w
-wyniku czego zmienne `WaistCirc` i `Albuminuria` wykluczone zostały z
-dalszych analiz. Do budowy modeli, jako zmienne objaśniające,
-wykorzystane zostaną zatem 3 zmienne jakościowe (`Sex`, `Marital`,
-`Race`) oraz 8 zmiennych ilościowych (`Age`, `Income`, `BMI`, `UrAlbCr`,
-`UricAcid`, `BloodGlucose`, `HDL`, `Triglycerides`).
+  Zmienną objaśnianą jest zmienna dychotomiczna `MetabolicSyndrome`. Zmiennymi objaśniającymi będą natomiast wszystkie wymienione w poprzednim rodziale zmienne z wyjątkiem dwóch. Przy analizie korelacji zmienne `BMI` i `WaistCirc` oraz `Albuminuria` i `UrAlbCr` wykazały między sobą zbyt dużą korelację, w wyniku czego zmienne `WaistCirc` i `Albuminuria` wykluczone zostały z dalszych analiz. Do budowy modeli, jako zmienne objaśniające, wykorzystane zostaną zatem 3 zmienne jakościowe (`Sex`, `Marital`, `Race`) oraz 8 zmiennych ilościowych (`Age`, `Income`, `BMI`, `UrAlbCr`, `UricAcid`, `BloodGlucose`, `HDL`, `Triglycerides`).
 
 ## Estymacja modelu dwumianowego logitowego
 
-Estymacja modeli dwumianowych logitowych jest podstawową metodą analizy
-zależności między dychotomiczną zmienną endogeniczną (przyjmującą dwie
-wartości - występowanie lub brak zespołu metabolicznego), a zestawem
-predyktorów. Model logitowy szacuje prawdopodobieństwo zajścia danego
-zdarzenia przy założeniu, że logarytm ilorazu szans (logit) jest liniową
-funkcją zmiennych objaśniających, co matematycznie można zapisać w
-postaci:
-$$ log(\frac{p}{1-p}) = \beta_0 + \beta_1X_1 + \dots + \beta_kX_k $$  
-Rozpoczęto od estymacji modelu logitowego zawierającego wszystkie 11
-wcześniej wymienionych zmiennych objaśniających. Model ten stanowi punkt
-wyjścia do dalszej analizy, w tym oceny istotności zmiennych i
-ewentualnej selekcji predyktorów.
+Estymacja modeli dwumianowych logitowych jest podstawową metodą analizy zależności między dychotomiczną zmienną endogeniczną (przyjmującą dwie wartości - występowanie lub brak zespołu metabolicznego), a zestawem predyktorów. Model logitowy szacuje prawdopodobieństwo zajścia danego zdarzenia przy założeniu, że logarytm ilorazu szans (logit) jest liniową funkcją zmiennych objaśniających, co matematycznie można zapisać w postaci: $$ ln \left(\frac{p}{1-p}\right) = \beta_0 + \beta_1X_1 + \dots + \beta_kX_k $$   Analizę rozpoczęto od estymacji modelu logitowego uwzględniającego wszystkie 11 wcześniej zidentyfikowanych zmiennych objaśniających. Model ten stanowi punkt odniesienia dla dalszej analizy, w tym oceny istotności poszczególnych predyktorów oraz ewentualnej ich selekcji.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
-model_logit0 <- glm(MetabolicSyndrome ~ Age + Sex + Marital + Race + Income + 
+logit0 <- glm(MetabolicSyndrome ~ Age + Sex + Marital + Race + Income + 
                       BMI + UrAlbCr + UricAcid + BloodGlucose + HDL + Triglycerides, 
                    data = dane_u, family = binomial)
 # library("jtools")
-# summ(model_logit0)
+# summ(logit0)
 # summary(model_logit0)
 
 # Funkcja przedstawiająca podsumowanie modelu w tabeli
-stworz_tabele_summary <- function(model_glm) {
+stworz_tabele_summary <- function(model_glm, czy_kategoryczne) {
 
     # Wyciągnięcie współczynników z podsumowania modelu i konwersja do data.frame
-    summary <- as.data.frame(round(summary(model_glm)$coefficients, 4))
+    summary <- as.data.frame(round(summary(model_glm)$coefficients, 3))
+    # tworzenie VIF
+    if(czy_kategoryczne == 1){
+      wynik_vif <- ifelse(any(as.data.frame(vif(model_glm))[,3]) > 2.5,
+                          "współliniowe", "niewspółliniowe")
+    }
+    else{
+      wynik_vif <- ifelse(any(vif(model_glm)) > 2.5,
+                          "współliniowe", "niewspółliniowe")
+    }
     
     # Utworzenie tabeli
     kbl <- kbl(summary,
+               col.names = c("Ocena parametru modelu", "Błąd std.",
+                             "Statytstyka testowa","p-value"),
       booktabs = TRUE,
-      caption = "Podsumowanie modelu") %>%
-      kable_styling(
-          latex_options = c("striped", "hold_position")) %>%
-      footnote(
-          general = "Źródło: opracowanie własne na podstawie zbioru danych",
-         general_title = "") %>%
+      caption = paste0("Podsumowanie modelu ", deparse(substitute(model_glm)))) %>%
+      kable_styling(latex_options = c("striped", "hold_position")) %>%
+      footnote(general = "Źródło: opracowanie własne na podstawie zbioru danych",
+           general_title = paste0(
+  "Test ilorazu wiarygodności (p-value): ",
+  round(as.data.frame(lrtest(model_glm))[2,5], 5),
+  "  |  Wynik VIF: ", wynik_vif)) %>%
      column_spec(1, width = "4cm")
     
     # Zwrócenie tabeli
     return(kbl)
-    
 }
 
-stworz_tabele_summary(model_logit0)
+stworz_tabele_summary(logit0, 1)
 ```
 
-  Aby stwierdzić istotność wszystkich niezależnych zmiennych w modelu,
-przeprowadzono test ilorazu wiarygodności. Test ten porównuje model
-zerowy (zawierający jedynie wyraz wolny, bez żadnych predyktorów) z
-modelem pełnym, w którym uwzględniono 11 zmiennych objaśniających.
-Hipoteza zerowa dla testu zakłada, że żaden z predyktorów nie wpływa na
-zmienną zależną, co oznacza brak związku między nimi.Test ten pozwala
-sprawdzić, czy dodanie zmiennych istotnie poprawia dopasowanie modelu do
-danych. P-wartość dla statystyki $\chi^2$ dla testu wykonanego na modelu
-`logit0` była mniejsza niż przyjęty poziom istotności $\alpha = 0.05$. W
-związku z tym odrzucono hipotezę zerową na rzecz hipotezy alternatywnej,
-co oznacza, że uwzględnione predyktory mają istotny wpływ na zmienną
-zależną.
+  W celu oceny ogólnej istotności predyktorów zastosowano test ilorazu wiarygodności, porównujący model zerowy (zawierający jedynie wyraz wolny) z modelem pełnym obejmującym wszystkie zmienne objaśniające. Hipoteza zerowa dla testu zakłada, że żaden z predyktorów nie wpływa na zmienną zależną, co oznacza brak związku między nimi. Test ten pozwala sprawdzić, czy dodanie zmiennych istotnie poprawia dopasowanie modelu do danych. Dla modelu *logit0* uzyskano p-wartość statystyki $\chi^2$ mniejszą niż przyjęty poziom istotności $\alpha = 0.05$. W związku z tym hipotezę zerową odrzucono na rzecz hipotezy alternatywnej, co wskazuje, że przynajmniej jedna z uwzględnionych zmiennych ma istotny wpływ na zmienną zależną.
+
+  Wskaźnik inflacji wariancji (VIF, ang. *Variance Inflation Factor*) jest miarą używaną do oceny poziomu współliniowości pomiędzy zmiennymi objaśniającymi w modelu regresji. Współczynnik ten informuje, w jakim stopniu wariancja oszacowania parametru regresji dla zmiennej $X_j$ jest zawyżona z powodu jej współliniowości z pozostałymi zmiennymi objaśniającymi. Matematycznie, VIF dla zmiennej $X_j$ definiuje się jako: $$ VIF_j = \frac{1}{1-R_j^2} $$ gdzie $R_j^2$ to współczynnik determinacji uzyskany z regresji zmiennej $X_j$ na pozostałe zmienne objaśniające $X_i$, $i \neq j$. Mówiąc inaczej, $R_j$ to współczynnik korelacji liniowej wielorakiej między $X_j$ a pozostałymi zmiennymi w modelu.
+
+  Wskaźnik VIF zawsze przyjmuje wartości większe lub równe 1. Wartość $VIF = 1$ oznacza brak współliniowości - zmienna $X_j$ nie jest liniowo związana z żadną inną zmienną objaśniającą w modelu, co jest sytuacją idealną. Za umowną granicę akceptowalnej współliniowości przyjęto wartość na poziomie 2.5. Dla oszacowanego modelu logitowego wartości GVIF (*Generalized Variance Inflation Factor*) wskazują na brak istotnej współliniowości pomiędzy zmiennymi objaśniającymi. Zmienne kategoryczne (np. `Marital` i `Race`) miały wyższe surowe wartości GVIF, ale po przeskalowaniu ich wartości także były bardzo niskie (ok. 1.03–1.07), co oznacza, że nie wnoszą istotnej współliniowości. Wszystkie wartości mieściły się znacząco poniżej umownej granicy, zatem zmienne egzogeniczne są relatywnie niezależne od siebie.
+
+  Na podstawie podsumowania modelu można zauważyć, że nie wszystkie zmienne są istotne statystycznie w kontekście budowy modelu. P-wartości dla statystyki $z$ przekraczające przyjęty poziom istotności $\alpha = 0.1$ dotyczą zmiennych `Race` i `Income`, co wskazuje na ich nieistotność. Obniżoną istotność statystyczną wykazują również zmienne `Marital`, `UrAlbCr` oraz `UricAcid`. W związku z tym oszacowany zostanie nowy model logitowy, uwzględniający wszystkie wcześniej rozpatrywane predyktory z wyjątkiem zmiennych jednoznacznie nieistotnych (`Race`, `Income`).
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
-# Funkcja przedstawiająca lrtest modelu w tabeli
-stworz_tabele_lrtest <- function(model_glm) { 
-  
-    # Konwersja do data.frame
-    lrtest <- as.data.frame(lrtest(model_glm))
-    
-    # Utworzenie tabeli
-    kbl <- kbl(lrtest,
-      booktabs = TRUE,
-      caption = "Test ilorazu wiarygodności") %>%
-      kable_styling(
-          latex_options = c("striped", "hold_position")) %>%
-      footnote(
-          general = "Źródło: opracowanie własne na podstawie zbioru danych",
-         general_title = "") %>%
-     column_spec(1, width = "4cm")
-    
-    # Zwrócenie tabeli
-    return(kbl)
-    
-}
-
-stworz_tabele_lrtest(model_logit0)
-# lrtest(model_logit0)
-
-```
-
-  Wskaźnik inflacji wariancji (VIF, ang. Variance Inflation Factor) jest
-miarą używaną do oceny poziomu współliniowości pomiędzy zmiennymi
-objaśniającymi w modelu regresji. Współczynnik ten informuje, w jakim
-stopniu wariancja oszacowania parametru regresji dla zmiennej $X_j$ jest
-zawyżona z powodu jej współliniowości z pozostałymi zmiennymi
-objaśniającymi. Matematycznie, VIF dla zmiennej $X_j$ definiuje się
-jako: $$ VIF_j = \frac{1}{1-R_j^2} $$ gdzie $R_j^2$ to współczynnik
-determinacji uzyskany z regresji zmiennej $X_j$ na pozostałe zmienne
-objaśniające $X_i$, $i \neq j$. Mówiąc inaczej, $R_j$ to współczynnik
-korelacji liniowej wielorakiej między $X_j$ a pozostałymi zmiennymi w
-modelu.
-
-```{r echo=FALSE, message=FALSE, warning=FALSE}
-# Funkcja przedstawiająca vif modelu w tabeli
-stworz_tabele_vif <- function(model_glm) {
-
-      # Konwersja do data.frame
-    vif <- as.data.frame(round(vif(model_glm), 4))
-    
-    # Utworzenie tabeli
-    kbl <- kbl(vif,
-      booktabs = TRUE,
-      caption = "Wskaźnik inflacji wariancji") %>%
-      kable_styling(
-          latex_options = c("striped", "hold_position")) %>%
-      footnote(
-          general = "Źródło: opracowanie własne na podstawie zbioru danych",
-         general_title = "") %>%
-     column_spec(1, width = "4cm")
-    
-    # Zwrócenie tabeli
-    return(kbl)
-    
-}
-
-stworz_tabele_vif(model_logit0)
-```
-
-  Wskaźnik VIF zawsze przyjmuje wartości większe lub równe 1. Wartość
-$VIF = 1$ oznacza brak współliniowości - zmienna $X_j$ nie jest liniowo
-związana z żadną inną zmienną objaśniającą w modelu, co jest sytuacją
-idealną. Za umowną granicę akceptowalnej współliniowości przyjęto
-wartość na poziomie 2.5. Dla oszacowanego modelu logitowego wartości
-GVIF (Generalized Variance Inflation Factor) wskazują na brak istotnej
-współliniowości pomiędzy zmiennymi objaśniającymi. Zmienne kategoryczne
-(np. `Marital` i `Race`) miały wyższe surowe wartości GVIF, ale po
-przeskalowaniu ich wartości także były bardzo niskie (ok. 1.03–1.07), co
-oznacza, że nie wnoszą istotnej współliniowości. Wszystkie wartości
-mieściły się znacząco poniżej umownej granicy, zatem zmienne
-egzogeniczne są relatywnie niezależne od siebie.
-
-  Na podstawie podsumowania modelu można zauważyć, że nie wszystkie
-zmienne są istotne statystycznie w kontekście budowy modelu. P-wartości
-dla statystyki $z$ przekraczające przyjęty poziom istotności
-$\alpha = 0.1$ dotyczą zmiennych `Race` i `Income`, co wskazuje na ich
-nieistotność. Obniżoną istotność statystyczną wykazują również zmienne
-`Marital`, `UrAlbCr` oraz `UricAcid`. W związku z tym oszacowany
-zostanie nowy model logitowy, uwzględniający wszystkie wcześniej
-rozpatrywane predyktory z wyjątkiem zmiennych jednoznacznie nieistotnych
-(`Race`, `Income`).
-
-```{r echo=FALSE, message=FALSE, warning=FALSE}
-model_logit1 <- glm(MetabolicSyndrome ~ Age + Sex + Marital + BMI + UrAlbCr + 
+logit1 <- glm(MetabolicSyndrome ~ Age + Sex + Marital + BMI + UrAlbCr + 
                       UricAcid + BloodGlucose + HDL + Triglycerides, 
                    data = dane_u, family = binomial)
 
 # summary(model_logit1)
 
 # Tabela z podsumowaniem modelu
-stworz_tabele_summary(model_logit1)
+stworz_tabele_summary(logit1, 1)
 ```
 
-  Dla powyższego modelu, również wykonany został test ilorazu
-wiarygodności. P-wartość dla statystyki $\chi^2$ była mniejsza od
-przyjętego poziomu istotności ($\alpha = 0.05$), co także w tym
-przypadku pozwala na odrzucenie hipotezy zerowej, mówiącej o
-nieistotności wszystkich zmiennych w modelu.
+  Dla powyższego modelu test ilorazu wiarygodności także pozwala na odrzucenie hipotezy zerowej, mówiącej o nieistotności wszystkich zmiennych w modelu. Wartości wskaźnika VIF dla drugiego modelu logitowego wskazują, że nie występuje istotny problem współliniowości między zmiennymi objaśniającymi. Wszystkie przeskalowane wartości GVIF mieszczą się w przedziale od około 1.04 do 1.27, co oznacza jedynie niewielką korelację pomiędzy predyktorami. Najwyższe wartości dotyczą zmiennych `Age` (1.27) i `Sex` (1.24), ale nawet te wartości pozostają znacznie poniżej umownej granicy 2.5, przy której można by rozważać potencjalne problemy ze współliniowością. W związku z tym można uznać, że predyktory nie są ze sobą nadmiernie skorelowane.
+
+  Podsumowanie modelu *logit1* nie wskazuje żadnych zupełnie nieistotnych zmiennych. Można jednak zauważyć, że warianty zmiennej `Marital` wykazują różną istotność. W szczegolności p-wartość dla wariantu `Marital: Married` jest wyższa od najwyższego poziomu istotności (równego 0.1), wskazując na jego nieistotność. Inne warianty istotne są na poziomach 0.05 i 0.1, co jest wynikiem gorszym niż dla pozostałych zmiennych. Warto także odnotować, że p-wartości dla zmiennych `UrAlbCr` i `UricAcid` zmieniły się minimalnie, co, po usunięciu nieistotnych zmiennych, nie poprawiło mocno ich istotności. Aby sprawdzić czy zmienna `Marital` faktycznie nie ma znacznego wpływu na zmienną objaśnianą, westymowano nowy model, poprzez usnięcie jej ze zmiennych egzogenicznych.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
-# lrtest(model_logit1)
-stworz_tabele_lrtest(model_logit1)
-```
-
-```{r echo=FALSE, message=FALSE, warning=FALSE}
-stworz_tabele_vif(model_logit1)
-# vif(model_logit1)
-```
-
-  Wartości wskaźnika VIF dla drugiego modelu logitowego wskazują, że nie
-występuje istotny problem współliniowości między zmiennymi
-objaśniającymi. Wszystkie przeskalowane wartości GVIF mieszczą się w
-przedziale od około 1.04 do 1.27, co oznacza jedynie niewielką korelację
-pomiędzy predyktorami. Najwyższe wartości dotyczą zmiennych `Age` (1.27)
-i `Sex` (1.24), ale nawet te wartości pozostają znacznie poniżej umownej
-granicy 2.5, przy której można by rozważać potencjalne problemy ze
-współliniowością. W związku z tym można uznać, że predyktory nie są ze
-sobą nadmiernie skorelowane.
-
-  Podsumowanie modelu `logit1` nie wskazuje żadnych zupełnie
-nieistotnych zmiennych. Można jednak zauważyć, że warianty zmiennej
-`Marital` wykazują różną istotność. W szczegolności p-wartość dla
-wariantu `Marital: Married` jest wyższa od najwyższego poziomu
-istotności (równego 0.1), wskazując na jego nieistotność. Inne warianty
-istotne są na poziomach 0.05 i 0.1, co jest wynikiem gorszym niż dla
-pozostałych zmiennych. Warto także odnotować, że p-wartości dla
-zmiennych `UrAlbCr` i `UricAcid` zmieniły się minimalnie, co, po
-usunięciu nieistotnych zmiennych, nie poprawiło mocno ich istotności.
-Aby sprawdzić czy zmienna `Marital` faktycznie nie ma znacznego wpływu
-na zmienną objaśnianą, westymowano nowy model, poprzez usnięcie jej ze
-zmiennych egzogenicznych.
-
-```{r echo=FALSE, message=FALSE, warning=FALSE}
-model_logit2 <- glm(MetabolicSyndrome ~ Age + Sex + BMI + UrAlbCr + UricAcid + 
+logit2 <- glm(MetabolicSyndrome ~ Age + Sex + BMI + UrAlbCr + UricAcid + 
                       BloodGlucose + HDL + Triglycerides, 
                    data = dane_u, family = binomial)
 
 # summary(model_logit2)
-stworz_tabele_summary(model_logit2)
+stworz_tabele_summary(logit2, 0)
 ```
 
-  Ponieważ p-wartość jest znacznie mniejsza niż przyjęty poziom
-istotności $\alpha = 0.05$, odrzucono hipotezę zerową o braku wpływu
-zmiennych objaśniających na zmienną zależną. Oznacza to, że ujęte w
-modelu predyktory istotnie poprawiają jego dopasowanie do danych.
+  Ponieważ p-wartość jest znacznie mniejsza niż przyjęty poziom istotności $\alpha = 0.05$, odrzucono hipotezę zerową o braku wpływu zmiennych objaśniających na zmienną zależną. Oznacza to, że ujęte w modelu predyktory istotnie poprawiają jego dopasowanie do danych.
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}
-# lrtest(model_logit2)
-stworz_tabele_lrtest(model_logit2)
-```
+  W obecnym modelu wszystkie zmienne są numeryczne lub binarne, dlatego każda ma tylko jeden parametr i klasyczny VIF = GVIF, a przeskalowanie nie jest potrzebne. Wskaźnik VIF również nie wskazuje na istotną współliniowość. Wszystkie wartości mieszczą się w przedziale od 1.09 do 1.50, co oznacza bardzo niski poziom współzależności pomiędzy predyktorami. Najwyższe wartości ponownie można zaobserwować dla zmiennych `Sex` (1.50) i `Age` (1.27), ale nadal są one dalekie od granicy uznawanej za problematyczną (2.5).
 
-  W obecnym modelu wszystkie zmienne są numeryczne lub binarne, dlatego
-każda ma tylko jeden parametr i klasyczny VIF = GVIF, a przeskalowanie
-nie jest potrzebne. Wskaźnik VIF również nie wskazuje na istotną
-współliniowość. Wszystkie wartości mieszczą się w przedziale od 1.09 do
-1.50, co oznacza bardzo niski poziom współzależności pomiędzy
-predyktorami. Najwyższe wartości ponownie można zaobserwować dla
-zmiennych `Sex` (1.50) i `Age` (1.27), ale nadal są one dalekie od
-granicy uznawanej za problematyczną (2.5).
-
-```{r echo=FALSE, message=FALSE, warning=FALSE}
-# vif(model_logit2)
-stworz_tabele_vif(model_logit2)
-```
-
-  Model `logit2` dostarcza czytelnych i spójnych wyników estymacji. Większość zmiennych okazała się statystycznie istotna na poziomie $\alpha = 0.05$. Zmienna `UrAlbCr` osiągnęła istotność graniczną ($p \approx 0.047$), `UricAcid` również zbliża się do poziomu istotności ($p \approx 0.058$). Może to sugerować na ich potencjalną rolę, choć z mniejszą pewnością statystyczną. Znaki estymowanych współczynników są zgodne z oczekiwaniami - wyższe wartości BMI, glukozy, trójglicerydów i kwasu moczowego zwiększają ryzyko, natomiast wyższe wartości HDL zmniejszają je. 
-
+  Model `logit2` dostarcza czytelnych i spójnych wyników estymacji. Większość zmiennych okazała się statystycznie istotna na poziomie $\alpha = 0.05$. Zmienna `UrAlbCr` osiągnęła istotność graniczną ($p \approx 0.047$), `UricAcid` również zbliża się do poziomu istotności ($p \approx 0.058$). Może to sugerować na ich potencjalną rolę, choć z mniejszą pewnością statystyczną. Znaki estymowanych współczynników są zgodne z oczekiwaniami - wyższe wartości BMI, glukozy, trójglicerydów i kwasu moczowego zwiększają ryzyko, natomiast wyższe wartości HDL zmniejszają je.
 
 ## Estymacja modelu probitowego
 
-Model probitowy to jedna z podstawowych metod analizy zmiennej zależnej
-typu zero-jedynkowego, podobnie jak model logitowy. W modelu tym zakłada
-się, że prawdopodobieństwo zajścia danego zdarzenia (wystąpienia zespołu
-metabolicznego) jest funkcją skumulowanego rozkładu normalnego. Oznacza
-to, że związek między zmienną zależną a zestawem predyktorów opisuje się
-jako: $$ p = \Phi(\beta_0 + \beta_1X_1 + \dots + \beta_kX_k)$$ gdzie
-$\Phi$ oznacza dystrybuantę standardowego rozkładu normalnego.
+Model probitowy to jedna z podstawowych metod analizy zmiennej zależnej typu zero-jedynkowego, podobnie jak model logitowy. W modelu tym zakłada się, że prawdopodobieństwo zajścia danego zdarzenia (wystąpienia zespołu metabolicznego) jest funkcją skumulowanego rozkładu normalnego. Oznacza to, że związek między zmienną zależną a zestawem predyktorów opisuje się jako: $$ p = \Phi(\beta_0 + \beta_1X_1 + \dots + \beta_kX_k)$$ gdzie $\Phi$ oznacza dystrybuantę standardowego rozkładu normalnego.
 
-  Analizę rozpoczęto od estymacji modelu probitowego z pełnym zestawem
-11 zmiennych objaśniających. Model ten stanowi punkt wyjścia do dalszej
-analizy porównawczej z modelem logitowym oraz do ewentualnej selekcji
-istotnych predyktorów.
+  Analizę rozpoczęto od estymacji modelu probitowego z pełnym zestawem 11 zmiennych objaśniających. Model ten stanowi punkt wyjścia do dalszej analizy porównawczej z modelem logitowym oraz do ewentualnej selekcji istotnych predyktorów.
 
 ```{r include=FALSE, results ='hide'}
-model_probit0 <- glm(MetabolicSyndrome ~ Age + Sex + Marital + Race + Income + BMI + 
+probit0 <- glm(MetabolicSyndrome ~ Age + Sex + Marital + Race + Income + BMI + 
                  UrAlbCr + UricAcid + BloodGlucose + HDL + Triglycerides, 
                data = dane_u, family = binomial(link=probit))
 
@@ -906,73 +537,29 @@ model_probit0 <- glm(MetabolicSyndrome ~ Age + Sex + Marital + Race + Income + B
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 # summary(model_probit0)
-stworz_tabele_summary(model_probit0)
+stworz_tabele_summary(probit0, 1)
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}
-# lrtest(model_probit0)
-stworz_tabele_lrtest(model_probit0)
-```
+  Test ilorazu wiarygodności dla pełnego modelu probitowego (z 11 zmiennymi objaśniającymi) wykazuje istotną poprawę dopasowania względem modelu zerowego (zawierającego tylko wyraz wolny). Dla statystyki $\chi^2$ p-wartość jest mniejsza od przyjętego poziomu istotności $\alpha = 0.05$, co pozwala jednoznacznie odrzucić hipotezę zerową. Oznacza to, że przynajmniej część zmiennych objaśniających istotnie wpływa na prawdopodobieństwo wystąpienia zespołu metabolicznego, a model probitowy z tym zestawem predyktorów jest statystycznie istotny.
 
-  Test ilorazu wiarygodności dla pełnego modelu probitowego (z 11
-zmiennymi objaśniającymi) wykazuje istotną poprawę dopasowania względem
-modelu zerowego (zawierającego tylko wyraz wolny). Dla statystyki
-$\chi^2$ p-wartość jest mniejsza od przyjętego poziomu istotności
-$\alpha = 0.05$, co pozwala jednoznacznie odrzucić hipotezę zerową.
-Oznacza to, że przynajmniej część zmiennych objaśniających istotnie
-wpływa na prawdopodobieństwo wystąpienia zespołu metabolicznego, a model
-probitowy z tym zestawem predyktorów jest statystycznie istotny.
+  Wskaźniki VIF (GVIF) dla modelu probitowego wskazują, że w modelu nie występuje problem współliniowości. Przeskalowane wartości mieszczą się w zakresie od 1.03 do 1.29, co oznacza niski poziom korelacji między zmiennymi objaśniającymi. Najwyższe wartości odnotowano dla zmiennych `Age` (1.29) i `Sex` (1.24), jednak są one znacznie poniżej wartości uznawanych za niepokojące.
+
+  Podobnie jak w przypadku modelu `logit0`, zmienne `Race` i `Income` wydają się być nieistotne statystycznie, ponieważ ich p-wartości dla statystyki $z$ są znacznie wyższe niż najwyższy analizowany poziom istotności ($\alpha = 0.05$). Co więcej w przypadku zmiennej `Marital` również zaobserwowano brak istotności niektórych jej kategorii (np. `Marital: Married`, `Marital: Widowed`), co jest zgodne z wynikami wcześniejszych modeli logitowych. W poprzednich analizach usunięcie zmiennej `Marital` skutkowało pogorszeniem wartości AIC, dlatego na tym etapie zdecydowano się najpierw ograniczyć model jedynie o zmienne całkowicie nieistotne statystycznie, czyli `Race` i `Income`. Takie podejście pozwala na uproszczenie modelu bez znaczącej utraty jakości dopasowania, zachowując jednocześnie istotne informacyjnie zmienne i minimalizując ryzyko nadmiernego dopasowania.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
-# vif(model_probit0)
-stworz_tabele_vif(model_probit0)
-```
-
-  Wskaźniki VIF (GVIF) dla modelu probitowego wskazują, że w modelu nie
-występuje problem współliniowości. Przeskalowane wartości mieszczą się w
-zakresie od 1.03 do 1.29, co oznacza niski poziom korelacji między
-zmiennymi objaśniającymi. Najwyższe wartości odnotowano dla zmiennych
-`Age` (1.29) i `Sex` (1.24), jednak są one znacznie poniżej wartości
-uznawanych za niepokojące.
-
-  Podobnie jak w przypadku modelu `logit0`, zmienne `Race` i `Income`
-wydają się być nieistotne statystycznie, ponieważ ich p-wartości dla
-statystyki $z$ są znacznie wyższe niż najwyższy analizowany poziom
-istotności ($\alpha = 0.05$). Co więcej w przypadku zmiennej `Marital`
-również zaobserwowano brak istotności niektórych jej kategorii (np.
-`Marital: Married`, `Marital: Widowed`), co jest zgodne z wynikami
-wcześniejszych modeli logitowych. W poprzednich analizach usunięcie
-zmiennej `Marital` skutkowało pogorszeniem wartości AIC, dlatego na tym
-etapie zdecydowano się najpierw ograniczyć model jedynie o zmienne
-całkowicie nieistotne statystycznie, czyli `Race` i `Income`. Takie
-podejście pozwala na uproszczenie modelu bez znaczącej utraty jakości
-dopasowania, zachowując jednocześnie istotne informacyjnie zmienne i
-minimalizując ryzyko nadmiernego dopasowania.
-
-```{r echo=FALSE, message=FALSE, warning=FALSE}
-model_probit1 <- glm(MetabolicSyndrome ~ Age + Sex + Marital + BMI + UrAlbCr + 
+probit1 <- glm(MetabolicSyndrome ~ Age + Sex + Marital + BMI + UrAlbCr + 
                       UricAcid + BloodGlucose + HDL + Triglycerides, 
                    data = dane_u, family = binomial(link=probit))
 
 # summary(model_probit1)
-stworz_tabele_summary(model_probit1)
+stworz_tabele_summary(probit1, 1)
 ```
 
   Test porównujący model `probit1` z modelem zerowym (zawierającym jedynie wyraz wolny) wskazuje na bardzo silną istotność statystyczną modelu pełnego. Odrzucono hipotezę zerową, co oznacza, że wprowadzone zmienne w istotny sposób poprawiają dopasowanie modelu.
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}
-stworz_tabele_lrtest(model_probit1)
-# lrtest(model_probit1)
-```
-
   Wartości wskaźnika VIF dla wszystkich predyktorów w modelu `probit1` mieszczą się w przedziale 1.04-1.26, co oznacza brak istotnego problemu współliniowości. Szczególnie niska wartość przeskalowanego GVIF dla zmiennej `Marital` (1.0437) potwierdza, że mimo wielokategoryczności, zmienna ta nie wprowadza nadmiernej redundancji.
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}
-stworz_tabele_vif(model_probit1)
-```
-
-  W modelu `probit1` uwzględniono dziewięć zmiennych objaśniających. Wyniki estymacji wskazują, że wiek, płeć, BMI, poziom glukozy, HDL, trójglicerydy oraz kwas moczowy są istotnymi predyktorami prawdopodobieństwa wystąpienia zespołu metabolicznego ($p < 0.05$). `UrAlbCr` osiąga poziom istotności granicznej ($p \approx 0.088$), a więc może mieć umiarkowany wpływ na zmienną zależną. W przypadku zmiennej `Marital`, istotność wykazują tylko dwa poziomy `Separated` i `Single`. Pozostałe warianty nie są istotne statystycznie. 
-
+  W modelu `probit1` uwzględniono dziewięć zmiennych objaśniających. Wyniki estymacji wskazują, że wiek, płeć, BMI, poziom glukozy, HDL, trójglicerydy oraz kwas moczowy są istotnymi predyktorami prawdopodobieństwa wystąpienia zespołu metabolicznego ($p < 0.05$). `UrAlbCr` osiąga poziom istotności granicznej ($p \approx 0.088$), a więc może mieć umiarkowany wpływ na zmienną zależną. W przypadku zmiennej `Marital`, istotność wykazują tylko dwa poziomy `Separated` i `Single`. Pozostałe warianty nie są istotne statystycznie.
 
   ?(...) Czy robimy probit2?
 
@@ -1013,29 +600,11 @@ model4 <- glm(MetabolicSyndrome ~ Age*BloodGlucose + Sex + BMI + UrAlbCr + UricA
 summary(model4)
 ```
 
-ISTOTNOŚĆ: Age*BloodGlucose -\> tak (zwykle pogarsza się z wiekiem) +
-Sex*HDL -\> tak (kobiety mają wyższe) + Age*UricAcid -\> tak (zwykle
-zwiększa się z wiekiem) + HDL*Triglycerides -\> tak, ale może już być
-przeuczony i zbyt skomplikowany UricAcid*BMI -\> nie Sex*BMI -\> nie
-UricAcid*BloodGlucose -\> nie BMI*Triglycerides -\> nie
-BMI\*BloodGlucose -\> nie nie wiem czy jeszcze jakieś
+ISTOTNOŚĆ: Age*BloodGlucose -\> tak (zwykle pogarsza się z wiekiem) + Sex*HDL -\> tak (kobiety mają wyższe) + Age*UricAcid -\> tak (zwykle zwiększa się z wiekiem) + HDL*Triglycerides -\> tak, ale może już być przeuczony i zbyt skomplikowany UricAcid*BMI -\> nie Sex*BMI -\> nie UricAcid*BloodGlucose -\> nie BMI*Triglycerides -\> nie BMI\*BloodGlucose -\> nie nie wiem czy jeszcze jakieś
 
 ostatni ma niby najlepsze AIC ze wszystkich modeli (sprawdzone ze step)
 
-NOTATKI: OPISY TO WORK IN PROGRESS modele logitowe: usuniecie najpierw
-income pozniej race nie ma znaczenia wiec usunelam od razu obydwa na raz
-a drugi model z usunieciem marital nie jestem pewna, aic wychodzi
-wieksze ale nie do konca jest istotne, wiec zostawilam do testow
-usuniecie tych zmiennych ktore sa mniej istotne w sumie tez nie ma sensu
-bo aic znowu wieksze i nie ma jakichs dobrych powodow wazne:
-step(logit0) daje model logit1, wiec to usuniecie marital i w logitowym
-i probitowym moze nie miec az takiego sensu, chociaz imo w logitowym
-mozna zostawic tak zeby sprawdzic modele probitowe: tylko jeden
-dodatkowy, z tym marital wyszlo podobnie jak z logitowym wiec tu juz nie
-dodawalam kolejnego z interakcjami: opis wyżej, wzielam interakcje takie
-ktore maja sens ogólnie, sprawdziłam tez wszystkie interakcje (miedzy
-wszystkimi zmiennymi z funkcja step) i byly takie ktore byly istotne ale
-troche bezsensowne wiec nie wiem
+NOTATKI: OPISY TO WORK IN PROGRESS modele logitowe: usuniecie najpierw income pozniej race nie ma znaczenia wiec usunelam od razu obydwa na raz a drugi model z usunieciem marital nie jestem pewna, aic wychodzi wieksze ale nie do konca jest istotne, wiec zostawilam do testow usuniecie tych zmiennych ktore sa mniej istotne w sumie tez nie ma sensu bo aic znowu wieksze i nie ma jakichs dobrych powodow wazne: step(logit0) daje model logit1, wiec to usuniecie marital i w logitowym i probitowym moze nie miec az takiego sensu, chociaz imo w logitowym mozna zostawic tak zeby sprawdzic modele probitowe: tylko jeden dodatkowy, z tym marital wyszlo podobnie jak z logitowym wiec tu juz nie dodawalam kolejnego z interakcjami: opis wyżej, wzielam interakcje takie ktore maja sens ogólnie, sprawdziłam tez wszystkie interakcje (miedzy wszystkimi zmiennymi z funkcja step) i byly takie ktore byly istotne ale troche bezsensowne wiec nie wiem
 
 -   wszystkie byly sprawdzone z funkcja step()
 
@@ -1043,13 +612,13 @@ troche bezsensowne wiec nie wiem
 
 # Ocena modeli i interpretacja modelu wynikowego
 
-(...) nie wiem jaki wstep tutaj napisać 
+(...) nie wiem jaki wstep tutaj napisać
 
 Celem niniejszego rozdziału jest ocena jakości dopasowania oraz zdolności predykcyjnych oszacowanych modeli regresji logitowej i probitowej, a następnie wybór modelu najlepiej odzwierciedlającego zależności występujące w danych. Na podstawie wyników porównań zaprezentowana zostanie interpretacja końcowego modelu oraz jego kluczowych parametrów, ze szczególnym uwzględnieniem zmiennych istotnie wpływających na prawdopodobieństwo wystąpienia zespołu metabolicznego.
 
 ## Ocena dopasowania modeli
 
-Na potrzeby porównania oszacowanych modeli regresji wykorzystano wybrane miary dopasowania: kryterium informacyjne AIC (Akaike Information Criterion), kryterium BIC (Bayesian Information Criterion), a także dwie miary pseudo-$R^2$:  współczynnik McFaddena oraz współczynnik Cragga-Uhlera.
+Na potrzeby porównania oszacowanych modeli regresji wykorzystano wybrane miary dopasowania: kryterium informacyjne AIC (Akaike Information Criterion), kryterium BIC (Bayesian Information Criterion), a także dwie miary pseudo-$R^2$: współczynnik McFaddena oraz współczynnik Cragga-Uhlera.
 
   Kryteria AIC i BIC służą do porównywania jakości dopasowania modeli uwzględniających różną liczbę parametrów. Miara AIC uwzględnia zarówno dopasowanie modelu, jak i jego złożoność. Niższa wartość AIC wskazuje na lepszy kompromis między tymi dwoma aspektami. Kryterium BIC bardziej penalizuje złożone modele (preferuje modele prostsze przy zbliżonym dopasowaniu). Współczynnik pseudo-$R^2$ McFaddena opiera się na logarytmie funkcji wiarygodności i pełni analogiczną funkcję jak klasyczne $R^2$, przy czym wartości powyżej 0.2 uznawane są za satysfakcjonujące, a powyżej 0.4 za dobre. Z kolei współczynnik Cragga-Uhlera stanowi przeskalowaną wersję pseudo-$R^2$, mieszczącą się w przedziale od 0 do 1, co ułatwia jego interpretację.
 
@@ -1066,11 +635,11 @@ return(ocena)
 
 wyniki_ocen_logit <- as.data.frame(
   rbind(
-  logit0 = ocena_modelu_dwum(model_logit0),
-  logit1 = ocena_modelu_dwum(model_logit1),
-  logit2 = ocena_modelu_dwum(model_logit2),
-  probit0 = ocena_modelu_dwum(model_probit0),
-  probit1 = ocena_modelu_dwum(model_probit1)
+  logit0 = ocena_modelu_dwum(logit0),
+  logit1 = ocena_modelu_dwum(logit1),
+  logit2 = ocena_modelu_dwum(logit2),
+  probit0 = ocena_modelu_dwum(probit0),
+  probit1 = ocena_modelu_dwum(probit1)
 ))
 ```
 
@@ -1087,19 +656,19 @@ kbl(wyniki_ocen_logit,
      column_spec(1, width = "4cm")
 ```
 
-  Usunięcie zmiennej `Marital` z modelu podwyższyło wartość AIC z 1206 (model `logit1`) na 1214, przy czym warto zauważyć, że jest to także wartość wyższa od AIC dla modelu `logit0` (modelu ze wszystkimi zmiennymi objasniającymi), która była równa 1213. Zdaje się zatem, że usuwanie kolejnych zmiennych może mieć podobny efekt i również jedynie pogorszać wartości AIC dla modelu. 
+  Usunięcie zmiennej `Marital` z modelu podwyższyło wartość AIC z 1206 (model `logit1`) na 1214, przy czym warto zauważyć, że jest to także wartość wyższa od AIC dla modelu `logit0` (modelu ze wszystkimi zmiennymi objasniającymi), która była równa 1213. Zdaje się zatem, że usuwanie kolejnych zmiennych może mieć podobny efekt i również jedynie pogorszać wartości AIC dla modelu.
+
   Rozważając Bayesowskie kryterium Schwarza, najlepszym modelem okazał się model z najmniejszą liczbą zmiennych egzogenicznych (`logit2`). Niewiele większą wartość kryterium BIC przyjął model `logit1`, natomiast model ze wszystkimi predyktorami okazał się być najgorszy.
-  Według miar pseudo $R^2$ najlepiej dopasowanym modelem jest model `logit0`. Jest to najprawdopodobniej spowodowane tym, że posiada on więcej zmiennych objaśniających od pozostałych modeli. Zgodnie z tą obserwacją, wraz ze zmniejszaniem ilości zmiennych w modelach logitowych można zaobserwować spadek wartości tych miar. Oba modele probitowe mają gorsze wartości od modelu `logit1`, jednak lepsze od modelu `logit2`. 
-  Kierując się kryterium Akaike oraz wartościami pseudo $R^2$, przy jednoczesnym zachowaniu istotności zmiennych, za najlepszy model logitowy uznano model `logit1`. Dodatkowym czynnikiem była przewaga interpretacji modeli logitowych. Modele probitowe informują jedynie o kierunku wpływu (wskazanie destymulant i stymulant).
-  
+
+  Według miar pseudo $R^2$ najlepiej dopasowanym modelem jest model `logit0`. Jest to najprawdopodobniej spowodowane tym, że posiada on więcej zmiennych objaśniających od pozostałych modeli. Zgodnie z tą obserwacją, wraz ze zmniejszaniem ilości zmiennych w modelach logitowych można zaobserwować spadek wartości tych miar. Oba modele probitowe mają gorsze wartości od modelu `logit1`, jednak lepsze od modelu `logit2`.
+
+  Kierując się kryterium Akaike oraz wartościami pseudo $R^2$, przy jednoczesnym zachowaniu istotności zmiennych, za najlepszy model logitowy uznano model `logit1`. Dodatkowym czynnikiem była przewaga interpretacji modeli logitowych. Modele probitowe informują jedynie o kierunku wpływu (wskazanie destymulant i stymulant).  
 
 ## Ocena jakości predykcji
 
 W celu weryfikacji zdolności predykcyjnych modeli, dane zostały uprzednio podzielone na zbiór uczący oraz zbiór testowy. Estymacja modeli została przeprowadzona na zbiorze uczącym, natomiast ocena trafności prognozowanych klasyfikacji zostanie przeprowadzona na zbiorze testowym.
 
-  Punkt odcięcia (wartość progową) wybrano w następujący sposób: 
-$$p^* = \frac{n_{1 \bullet}}{N}$$
-gdzie $n_{1 \bullet}$ to łączna liczba zaobserwowanych 1, a $N$ to liczebność zbioru.
+  Punkt odcięcia (wartość progową) wybrano w następujący sposób: $$p^* = \frac{n_{1 \bullet}}{N}$$ gdzie $n_{1 \bullet}$ to łączna liczba zaobserwowanych 1, a $N$ to liczebność zbioru.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 # Punkt odcięcia
@@ -1111,7 +680,7 @@ p <- table(dane_u$MetabolicSyndrome)[2]/nrow(dane_u)
   Tablica trafności dla modelu logitowego próba ucząca
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
-tab_traf <- data.frame(obserwowane = model_logit1$y, przewidywane = ifelse(model_logit1$fitted.values > p, 1, 0))
+tab_traf <- data.frame(obserwowane = logit1$y, przewidywane = ifelse(logit1$fitted.values > p, 1, 0))
 tablica_trafnosci <- table(tab_traf)
 
 kbl(tablica_trafnosci,
@@ -1129,7 +698,7 @@ kbl(tablica_trafnosci,
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 tab_traf <- data.frame(obserwowane = dane_t$MetabolicSyndrome, 
-                       przewidywane = ifelse(predict(model_logit1, dane_t, type = "response") > p, 1, 0))
+                       przewidywane = ifelse(predict(logit1, dane_t, type = "response") > p, 1, 0))
                        
 tablica_trafnosci <- table(tab_traf)
 
@@ -1144,7 +713,6 @@ kbl(tablica_trafnosci,
   column_spec(1, width = "4cm")
 ```
 
-
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 miary_pred <- function(model, dane, Y, p = 0.5) {
 tab <- table(obserwowane = Y, przewidywane = ifelse(predict(model, dane, type = "response") > p, 1, 0))
@@ -1158,15 +726,15 @@ return(miary)
 }
 ```
 
-
   Wyniki oceny jakości predykcji oparte na tablict trafności dla wybranego punktu odcięcia $p^*$ dla modelu `logit1` przedstawiono osobno dla zbioru uczącego oraz testowego. W przypadku zbioru uczącego, model osiągnął dokładność klasyfikacji (ACC) na poziomie $83.40\%$, a błąd klasyfikacji (ER) wyniósł $16.60\%$. Czułość modelu (SENS), czyli zdolność do wykrywania przypadków pozytywnych (obecności zespołu metabolicznego), osiągnęła wartość $83.22\%$, natomiast swoistość (SPEC), określająca skuteczność w identyfikacji przypadków negatywnych, wyniosła $83.50\%$.
+
   Dla zbioru testowego, model logitowy wykazał nieco niższą skuteczność, co jest typowe w kontekście oceny modelu na danych niezależnych. Dokładność klasyfikacji spadła do $81.21\%$, a błąd klasyfikacji wzrósł do $18.75\%$. Czułość wyniosła $78.40\%$, co wskazuje na nieco słabszą zdolność wykrywania przypadków pozytywnych w porównaniu do zbioru uczącego. Swoistość pozostała na wysokim poziomie i wyniosła $82.77\%$. Model prezentuje dobrą jakość predykcji. Różnice w wynikach pomiędzy zbiorem uczącym a testowym są niewielkie, co sugeruje, że model generalizuje dobrze i nie jest przeuczony. Zarówno czułość, jak i swoistość pozostają zrównoważone, co świadczy o skuteczności modelu w rozróżnianiu obu klas decyzyjnych.
- 
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 wyniki_miary_pred <- rbind(
-  logit1_uczacy = miary_pred(model = model_logit1, dane = dane_u, 
+  logit1_uczacy = miary_pred(model = logit1, dane = dane_u, 
                              Y = dane_u$MetabolicSyndrome, p),
-  logit1_testowy = miary_pred(model = model_logit1, dane = dane_t, 
+  logit1_testowy = miary_pred(model = logit1, dane = dane_t, 
                               Y = dane_t$MetabolicSyndrome, p))
 
 wyniki_miary_pred <- round(wyniki_miary_pred, 4)
@@ -1181,37 +749,36 @@ kbl(wyniki_miary_pred,
   column_spec(1, width = "4cm")
 ```
 
-
 ## Interpretacja modelu wynikowego
 
 We wcześniejszej części dokonano wyboru modelu logitowego `logit1` jako modelu wynikowego ze względu na jego dobre dopasowanie i zrównoważone właściwości predykcyjne. Model ten został oszacowany na podstawie danych uczących i zawiera 9 zmiennych objaśniających. Jego postać, wyrażona równaniem logitowym, przedstawia się następująco:
 
-$$ logit() = -9.89 + 0.05 \cdot Age - 0.80 \cdot Sex_{Male} + 0.26 \cdot Marital_{Married} + 0.75 \cdot Marital_{Separated} + 0.57 \cdot Marital_{Single} - 0.71 \cdot Marital_{Widowed} + 0.14 \cdot BMI + 0.08 \cdot UrAlbCr + 0.13 \cdot UricAcid + 0.02 BloodGlucose - 0.05 \cdot HDL + 0.02 \cdot Triglycerid$$
-  Współczynniki modelu logitowego należy interpretować jako wpływ danej zmiennej na logarytm ilorazu szans (logit) wystąpienia zespołu metabolicznego. W przypadku zmiennych ilościowych oznacza to zmianę logit(p) o daną wartość przy jednostkowym wzroście zmiennej, przy pozostałych zmiennych na stałym poziomie.
+$$ logit(p) = -9.89 + 0.05 \cdot Age - 0.80 \cdot Sex_{Male} + 0.26 \cdot Marital_{Married} + 0.75 \cdot Marital_{Separated} $$
+$$ + 0.57 \cdot Marital_{Single} - 0.71 \cdot Marital_{Widowed} + 0.14 \cdot BMI + 0.08 \cdot UrAlbCr + 0.13 \cdot UricAcid $$
+$$ + 0.02 BloodGlucose  - 0.05 \cdot HDL + 0.02 \cdot Triglycerides$$
 
-  Intercept 
 
-  Wzrost wieku o jeden rok zwiększa logarytm ilorazu szans wystąpienia zespołu metabolicznego 0 `r exp(model_logit1$coefficients[2])-1`, co oznacza wzrost szans o około $4.7\%$.
+Współczynniki modelu logitowego należy interpretować jako wpływ danej zmiennej na logarytm ilorazu szans (logit) wystąpienia zespołu metabolicznego. W przypadku zmiennych ilościowych oznacza to zmianę logit(p) o daną wartość przy jednostkowym wzroście zmiennej, przy pozostałych zmiennych na stałym poziomie.
 
-  Bycie mężczyzną wiąże się z niższym logitem zespołu metabolicznego w porównaniu do kobiet o `r round(-model_logit1$coefficients[3], 3)` jednostki, co przekłada się na spadek szans wystąpienia o około `r round(1-exp(model_logit1$coefficients[3]), 4) * 100`$\%$.
+  Intercept
 
-  Stan cywilny jest zmienną kategoryczną o pięciu wariantach (grupą referencyjną są osoby rozwiedzione):
-  - Zmienna `Married` wykazuje brak istotności statystycznej, ale nominalnie osoby zamężne/żonate mają wyższą szansę na zachorowanie względem referencyjnej kategorii o `r round(exp(model_logit1$coefficients[4])-1, 4) * 100`$\%$.
-  - Osoby w separacji mają `r round(exp(model_logit1$coefficients[5]), 2) ` razy większą szansę na zachorowanie niż osoby rozwiedzione.
-  - Osoby samotne mają istotnie wyższe szanse na wystąpienie zespołu metabolicznego niż osoby rozwiedzione (o `r round(exp(model_logit1$coefficients[6])-1, 4) * 100`$\%$).
-  - Osoby owdowiałe mają istotnie niższy logit niż osoby rozwiedzione. Szansa na zachorowanie dla tej grupy jest o `r round(1-exp(model_logit1$coefficients[7]), 4) * 100`$\%$ niższa niż dla grupy referencyjnej.
+Wzrost wieku o jeden rok zwiększa logarytm ilorazu szans wystąpienia zespołu metabolicznego o `r exp(logit1$coefficients[2]) - 1`, co oznacza wzrost szans o około $4.7\%$.
 
-  Wzrost wskaźnika masy ciała o jedną jednostkę zwiększa logit o `r round(model_logit1$coefficients[8],3)`, co odpowiada około `r round(exp(model_logit1$coefficients[8])-1,4)*100`$\%$ wzrostowi szans.
+Bycie mężczyzną wiąże się z niższym logitem zespołu metabolicznego w porównaniu do kobiet o `r round(-logit1$coefficients[3], 3)` jednostki, co przekłada się na spadek szans wystąpienia o około `r round(1 - exp(logit1$coefficients[3]), 4) * 100`%.
 
-  Wzrost stosunku albuminy do kreatyniny w moczu tylko o jedną jednostkę zwiększa szansę na zachorowanie aż o ok. `r round(exp(model_logit1$coefficients[9])-1,4)*100`$\%$.
+Stan cywilny jest zmienną kategoryczną o pięciu wariantach (grupą referencyjną są osoby rozwiedzione): - Zmienna `Married` wykazuje brak istotności statystycznej, ale nominalnie osoby zamężne/żonate mają wyższą szansę na zachorowanie względem referencyjnej kategorii o `r round(exp(logit1$coefficients[4]) - 1, 4) * 100`%. - Osoby w separacji mają `r round(exp(logit1$coefficients[5]), 2)` razy większą szansę na zachorowanie niż osoby rozwiedzione. - Osoby samotne mają istotnie wyższe szanse na wystąpienie zespołu metabolicznego niż osoby rozwiedzione (o `r round(exp(logit1$coefficients[6]) - 1, 4) * 100`%). - Osoby owdowiałe mają istotnie niższy logit niż osoby rozwiedzione. Szansa na zachorowanie dla tej grupy jest o `r round(1 - exp(logit1$coefficients[7]), 4) * 100`% niższa niż dla grupy referencyjnej.
 
-  Każda dodatkowa jednostka kwasu moczowego powoduje wzrost szans o ok. `r round(exp(model_logit1$coefficients[10])-1,4)*100`$\%$.
+Wzrost wskaźnika masy ciała o jedną jednostkę zwiększa logit o `r round(logit1$coefficients[8], 3)`, co odpowiada około `r round(exp(logit1$coefficients[8]) - 1, 4) * 100`% wzrostowi szans.
 
-  Wzrost poziomu glukozy we krwi zwiększa logit zespołu metabolicznego o `r round(model_logit1$coefficients[11], 3)` na jednostkę. Oznacza to, że każda dodatkowa jednostka glukozy powoduje przyrost szansy o ok. `r round(exp(model_logit1$coefficients[11])-1,4)*100`$\%$.
+Wzrost stosunku albuminy do kreatyniny w moczu tylko o jedną jednostkę zwiększa szansę na zachorowanie aż o ok. `r round(exp(logit1$coefficients[9]) - 1, 4) * 100`%.
 
-  Wzrost poziomu "dobrego" cholesterolu HDL o jedną jednostkę zmniejsza logit o `r round(model_logit1$coefficients[12], 3)`, czyli szanse na wystąpienie zespołu metabolicznego spadają o ok. `r round(1-exp(model_logit1$coefficients[12]),4)*100`$\%$.
+Każda dodatkowa jednostka kwasu moczowego powoduje wzrost szans o ok. `r round(exp(logit1$coefficients[10]) - 1, 4) * 100`%.
 
-  Trójglicerydy mają silny, dodatni wpływ - wzrost o jedną jednostkę zwiększa szansę o około `r round(exp(model_logit1$coefficients[13])-1,4)*100`$\%$.
+Wzrost poziomu glukozy we krwi zwiększa logit zespołu metabolicznego o `r round(logit1$coefficients[11], 3)` na jednostkę. Oznacza to, że każda dodatkowa jednostka glukozy powoduje przyrost szansy o ok. `r round(exp(logit1$coefficients[11]) - 1, 4) * 100`%.
+
+Wzrost poziomu "dobrego" cholesterolu HDL o jedną jednostkę zmniejsza logit o `r round(logit1$coefficients[12], 3)`, czyli szanse na wystąpienie zespołu metabolicznego spadają o ok. `r round(1 - exp(logit1$coefficients[12]), 4) * 100`%.
+
+Trójglicerydy mają silny, dodatni wpływ – wzrost o jedną jednostkę zwiększa szansę o około `r round(exp(logit1$coefficients[13]) - 1, 4) * 100`%.
 
 \newpage
 
